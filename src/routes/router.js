@@ -1,19 +1,21 @@
-import { PublicRoutes } from "./modules.js";
+import { PublicRoutes } from "./Modules.js";
+import Render from "./Render.js";
 
 const Routes = Object.fromEntries(
   PublicRoutes.map((route) => [route.path, route])
 );
 
 const root = document.getElementById("root");
+const render = new Render(root);
 
 const navigateTo = (path) => {
+  sessionStorage.setItem("currentRoute", path);
   window.history.pushState({}, "", path);
   locationHandler();
 };
 
 window.addEventListener("click", (event) => {
   const target = event.target.closest("[data-route]");
-
   if (!target) return;
 
   event.preventDefault();
@@ -21,21 +23,28 @@ window.addEventListener("click", (event) => {
 });
 
 const locationHandler = async () => {
-  const location = window.location.pathname || "/";
-  const route = Routes[location] || Routes["/auth/login"];
+  // pega pathname ou rota salva
+  const path = window.location.pathname || sessionStorage.getItem("currentRoute") || "/";
+  const route = Routes[path] || Routes["/"];
 
-  const module = await route.component();
-  const render = module.renderLoginPage || module.renderRegisterPage || module.default;
-
-  if (typeof render === "function") {
-    render(root);
+  if (!route) {
+    root.innerHTML = "<p>Página não encontrada.</p>";
     return;
   }
 
-  root.innerHTML = "<p>Página não encontrada.</p>";
+  try {
+    const page = await route.component();
+    const { template, styles } = page.default;
+    render.render(template, styles);
+  } catch (err) {
+    root.innerHTML = "<p>Erro ao carregar a rota.</p>";
+    console.error(err);
+  }
 };
 
 window.onpopstate = locationHandler;
-window.navigateTo = navigateTo;
 
-locationHandler();
+window.onload = () => {
+  const savedRoute = sessionStorage.getItem("currentRoute") || "/";
+  navigateTo(savedRoute);
+};

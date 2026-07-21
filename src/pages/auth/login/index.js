@@ -1,54 +1,41 @@
-import { Input } from "../../../components/input/index.js";
-import { Button } from "../../../components/button/index.js";
+import Input from "../../../components/input/index.js";
+import Button from "../../../components/button/index.js";
 import HeadingSection from "../common/HeadingSection.js";
 
-const template = `
-  <div class="container">
-    <aside class="container__logo">
+const LoginPage = {
+  template: `
+  <div class="auth-container">
+    <aside class="auth-container__logo">
       <img src="/src/assets/images/logo.svg" alt="Logo da Nossa Doceria" />
     </aside>
 
-    <main class="main">
-      <section class="main__section">
+    <main class="auth-container__main">
+      <section class="auth-main__section">
         ${HeadingSection("Login", "Insira suas informações")}
 
-        <form class="login-form">
-          <div class="login-form__content">
-            ${Input("E-mail", "email", "login-email", "Digite seu e-mail")}
-            ${Input("Senha", "password", "login-password", "Digite sua senha")} 
+        <form class="auth-main__form">
+          <div class="auth-main__form-content">
+            ${Input("login-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu email", required: true })}
+            ${Input("login-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", autocomplete: "senha atual", required: true })}
           </div>
 
-          <div class="login-form__button">
-          ${Button("submit", "Entrar")}  
-            <button type="button" class="login-form__forgot-password">
+          <div>
+            ${Button({ type: "submit", innerText: "Entrar" })}
+            <button type="button" class="auth-form__btn-forgot-password">
               Esqueci minha senha
             </button>
           </div>
         </form>
 
-        <div class="main__section__registration">
+        <div class="auth-main__info">
           <p>Não possui uma conta?</p>
           <a href="/auth/register" data-route>Cadastre-se aqui</a>
         </div>
       </section>
     </main>
   </div>
-`;
-
-const ensureStyle = () => {
-  const existingStyle = document.querySelector("link[data-page-style]");
-  if (existingStyle) return;
-
-  const style = document.createElement("link");
-  style.rel = "stylesheet";
-  style.href = "/src/pages/auth/login/style.css";
-  document.head.appendChild(style);
-};
-
-export function renderLoginPage(root) {
-  ensureStyle();
-  document.title = "Nossa Doceria | Login";
-  root.innerHTML = template;
+  `,
+  styles: "/src/pages/auth/style.css"
 }
 
-export default renderLoginPage;
+export default LoginPage;

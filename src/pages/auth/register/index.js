@@ -1,54 +1,40 @@
-import { Input } from "../../../components/input/index.js";
-import { Button } from "../../../components/button/index.js";
+import Button  from "../../../components/button/index.js";
 import HeadingSection from "../common/HeadingSection.js";
+import Input from "../../../components/input/index.js";
 
-const template = `
-  <div class="container">
-    <aside class="container__logo">
+const RegisterPage = {
+  template: `
+  <div class="auth-container">
+    <aside class="auth-container__logo">
       <img src="/src/assets/images/logo.svg" alt="Logo da Nossa Doceria" />
     </aside>
 
-    <main class="main">
-      <section class="main__section">
+    <main class="auth-container__main">
+      <section class="auth-main__section">
         ${HeadingSection("Cadastro", "Insira suas informações")}
-
-        <form class="register-form">
-          <div class="register-form__content">
-            ${Input("Nome Completo", "text", "register-name", "Digite seu nome completo")}
-            ${Input("E-mail", "email", "register-email", "Digite seu e-mail")}
-            ${Input("Telefone", "tel", "register-phone", "Digite seu telefone")}
-            ${Input("Senha", "password", "register-password", "Digite sua senha")} 
-            ${Input("Confirmar Senha", "password", "register-confirm-password", "Digite sua senha novamente")} 
+        
+        <form class="auth-main__form">
+          <div class="auth-main__form-content">
+            ${Input("register-name", "Nome Completo", { type: "text", name: "username", placeholder: "Digite seu nome completo", required: true })}
+            ${Input("register-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu e-mail", required: true })}
+            ${Input("register-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha",required: true })}
+            ${Input("register-confirm-password", "Senha", { type: "password", name: "password", placeholder: "Confirme sua senha", required: true })}
           </div>
-
-          <div class="register-form__button">
-          ${Button("submit", "Cadastrar-se")}  
+        
+          <div>
+            ${Button({ type: "submit", innerText: "Cadastrar-se" })}        
           </div>
         </form>
 
-        <div class="main__section__login">
+        <div class="auth-main__info">
           <p>Já possui uma conta?</p>
           <a href="/auth/login" data-route>Faça login aqui</a>
         </div>
       </section>
     </main>
   </div>
-`;
-
-const ensureStyle = () => {
-    const existingStyle = document.querySelector("link[data-page-style]");
-    if (existingStyle) return;
-
-    const style = document.createElement("link");
-    style.rel = "stylesheet";
-    style.href = "/src/pages/auth/register/style.css";
-    document.head.appendChild(style);
-};
-
-export function renderRegisterPage(root) {
-    ensureStyle();
-    document.title = "Nossa Doceria | Cadastro";
-    root.innerHTML = template;
+  `,
+  styles: "/src/pages/auth/style.css"
 }
 
-export default renderRegisterPage;
+export default RegisterPage;

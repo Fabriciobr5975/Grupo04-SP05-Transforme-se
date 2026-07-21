@@ -1,13 +1,14 @@
+import { setStyle  } from "../../utils/PageUtil.js";
 
-export default function Footer(children) {
-  ensureStyle();
-
+export default function Footer() {
+  setStyle("/src/components/footer/style.css");
+  
   return (`
     <footer class="footer">
       <section class="footer__content">
         <div class="footer__content-img">
           <img
-            src="../../assets/images/logo.svg"
+            src="/src/assets/images/logo.svg"
             alt="Logo Nossa confeitaria"
           />
           <span>Cada receita, uma história, cada doce, uma lembrança</span>
@@ -68,15 +69,5 @@ export default function Footer(children) {
         </div>
       </section>
     </footer>
-    `);
+  `);
 }
-
-const ensureStyle = () => {
-  const existingStyle = document.querySelector("link[data-page-style]");
-  if (existingStyle) return;
-
-  const style = document.createElement("link");
-  style.rel = "stylesheet";
-  style.href = "/src/components/footer/style.css";
-  document.head.appendChild(style);
-};

@@ -1,0 +1,122 @@
+.auth-confirm-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-confirm-container__main {
+  width: 100%;
+  max-width: 840px;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 2rem;
+  padding: 2rem 2.5rem;
+  background-color: #fff5e8;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.auth-confirm-container__logo {
+  background-color: #fff5e8;
+  height: 40vh;
+  padding-block: 2rem;
+}
+
+.auth-confirm-container__logo img {
+  width: 200px;
+  height: 30vh;
+  object-position: center;
+}
+
+.auth-confirm-main__section {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.auth-confirm__content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font: 600 1rem "Manrope";
+  gap: 0.85rem;
+}
+
+.auth-confirm__content-title {
+  color: #3b241a;
+  font: bold 2.25rem "Noto Serif";
+}
+
+.auth-confirm__content p {
+  font: 600 1.25rem/1.15 "Manrope";
+  text-align: center;
+}
+
+.auth-confirm__content p:last-child {
+  font: 500 1rem "Manrope";
+  text-align: center;
+  font-style: italic;
+}
+
+.auth-confirm-main__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 0.625rem;
+}
+
+.auth-confirm-main__form-content {
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.confirm-input {
+  text-align: center;
+  border-radius: calc(infinity * 1px);
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3b241a;
+  background-color: #c8c8c8;
+}
+
+/* Chrome, Safari, Edge */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: auto;
+}
+
+.auth-confirm-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-confirm-main__form__button button {
+  margin-block: 0.5rem;
+}

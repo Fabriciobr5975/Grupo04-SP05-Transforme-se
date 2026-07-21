@@ -1,9 +1,9 @@
+import { setStyle } from "../../utils/PageUtil.js";
 
 export default function Header() {
-    ensureStyle();
+  setStyle("/src/components/header/style.css");
 
-    return (`
-   
+  return (`
     <header class="header">
       <section class="header__content">
         <a
@@ -12,7 +12,7 @@ export default function Header() {
           class="header__content_img"
         >
           <img
-            src="../../assets/images/logo.svg"
+            src="/src/assets/images/logo.svg"
             alt="Logo Nossa confeitaria"
           />
         </a>
@@ -50,27 +50,19 @@ export default function Header() {
             title="Buscar produtos"
             class="icon-section__btn"
           >
-            <i class="fa-solid fa-magnifying-glass header__icon"></i>
+          <i class="fa-solid fa-magnifying-glass header__icon"></i>
           </button>
-          <a class="icon-section__btn" href="#">
+          
+          <a class="icon-section__btn" href="/cart" data-route>
             <i class="fa-solid fa-bag-shopping header__icon"></i>
-            <span class="icon_section__btn--qtd">5</span>
+            <span class="icon_section__btn--quantity">5</span>
           </a>
-          <a class="icon-section__btn" href="#">
+
+          <a class="icon-section__btn" href="/auth/login" data-route>
             <i class="fa-regular fa-user header__icon"></i>
           </a>
         </div>
       </section>
     </header>
-    `);
+  `);
 }
-
-const ensureStyle = () => {
-    const existingStyle = document.querySelector("link[data-page-style]");
-    if (existingStyle) return;
-
-    const style = document.createElement("link");
-    style.rel = "stylesheet";
-    style.href = "/src/components/header/style.css";
-    document.head.appendChild(style);
-};

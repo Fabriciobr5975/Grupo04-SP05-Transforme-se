@@ -1,0 +1,246 @@
+@import url("../../../style.css");
+
+.orders-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.orders-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.orders-page__header-text h1 {
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.orders-page__header-text p {
+  margin-top: 0.25rem;
+  color: #4a5565;
+  font-size: var(--text-md);
+}
+
+.orders-page__header-meta span {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.orders-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.orders-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 2px solid #b2aa98;
+  background-color: #f8f4ef;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.orders-page__card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d7cdb9;
+}
+
+.orders-page__card-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #14221a;
+}
+
+.orders-page__card-status {
+  margin-top: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.orders-page__card-status--delivered {
+  color: #166534;
+}
+
+.orders-page__card-status--pending {
+  color: #b45309;
+}
+
+.orders-page__card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.orders-page__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.orders-page__badge--green {
+  background-color: #d8f4e3;
+  color: #166534;
+}
+
+.orders-page__badge--orange {
+  background-color: #ffedd5;
+  color: #b45309;
+}
+
+.orders-page__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orders-page__item {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.9rem;
+  border: 1px solid #b2aa98;
+  background-color: #fffaf3;
+}
+
+.orders-page__item img {
+  width: 100%;
+  max-height: 220px;
+  min-height: 220px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+.orders-page__item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.orders-page__item-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.orders-page__item-heading h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.orders-page__item-heading span {
+  font-weight: 700;
+}
+
+.orders-page__item-meta,
+.orders-page__item-quantity,
+.orders-page__footer-value {
+  font-size: var(--text-sm);
+  color: #4a5565;
+}
+
+.orders-page__item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.orders-page__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.7rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 250ms ease, background-color 250ms ease, color 250ms ease;
+}
+
+.orders-page__button:hover {
+  transform: translateY(-1px);
+}
+
+.orders-page__button--primary {
+  border: 2px solid #05271d;
+  background-color: #224435;
+  color: #fff5e8;
+  padding: 0.6rem 1rem;
+}
+
+.orders-page__button--primary:hover {
+  background-color: #fff5e8;
+  color: #224435;
+}
+
+.orders-page__button--secondary {
+  border: 1px solid #05271d;
+  background-color: #f3e7d4;
+  color: #05271d;
+  padding: 0.6rem 1rem;
+}
+
+.orders-page__button--ghost {
+  border: 1px solid #cbd5e1;
+  background-color: transparent;
+  color: #475569;
+  padding: 0.6rem 1rem;
+}
+
+.orders-page__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #d7cdb9;
+}
+
+.orders-page__footer-label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.orders-page__freight {
+  display: inline-flex;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.orders-page__freight--free {
+  background-color: #d8f4e3;
+  color: #166534;
+}
+
+.orders-page__freight--paid {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.orders-page__total {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #111827;
+}

@@ -1,36 +1,64 @@
-@import url("../../../style.css");
-
-.container {
+.auth-container {
   width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.container__logo {
+.auth-container__logo {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--color-primary);
 }
 
-.container__logo img {
+.auth-container__logo img {
   width: 300px;
   height: 100vh;
   object-position: center;
 }
 
-.main {
+.auth-header__section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.auth-header__title {
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
+}
+
+.auth-header__title h1 {
+  color: #3b241a;
+  font: bold 2.25rem "Noto Serif";
+}
+
+.auth-header__title p {
+  font: 600 1rem "Manrope";
+  margin-top: 0.125rem;
+}
+
+.auth-header__button {
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 100%;
+  transition: 300ms ease;
+}
+
+.auth-container__main {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.625rem 1.5rem;
-  background-color: #fff5e8;
 }
 
-.main__section {
+.auth-main__section {
   width: 100%;
   max-width: 600px;
   height: 100%;
@@ -40,8 +68,7 @@
   gap: 2.5rem;
 }
 
-
-.login-form {
+.auth-main__form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -49,14 +76,14 @@
   padding-bottom: 0.625rem;
 }
 
-.login-form__content {
+.auth-main__form-content {
   width: inherit;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
 }
 
-.login-form__forgot-password {
+.auth-form__btn-forgot-password {
   cursor: pointer;
   background-color: transparent;
   align-self: flex-start;
@@ -67,52 +94,68 @@
   padding-left: 0.25rem;
 }
 
-.login-form__forgot-password:hover {
+.auth-form__btn-forgot-password:hover {
   text-decoration: underline;
 }
 
-.main__section__registration {
+.auth-main__info {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.125rem;
 }
 
-.main__section__registration p {
+.auth-main__info p {
   font: 500 0.95rem "Manrope";
   margin-top: 0.125rem;
 }
 
-.main__section__registration a {
+.auth-main__info a {
   font: bolder 1rem "Manrope";
   cursor: pointer;
   text-decoration: none;
   color: #224435;
 }
 
-.main__section__registration a:hover {
+.auth-main__info:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 1024px) {
-  .container {
+  .auth-container {
     display: flex;
     flex-direction: column;
   }
 
-  .container__logo {
+  .auth-container__logo {
     background-color: #fff5e8;
     height: 40vh;
     padding-block: 2rem;
   }
 
-  .container__logo img {
+  .auth-container__logo img {
     width: 200px;
     height: 30vh;
     object-position: center;
   }
 
-  .main {
+  .auth-header__button {
+    width: 3rem;
+  }
+
+  .auth-header__title h1 {
+    font-size: 1.75rem;
+  }
+
+  .auth-header__title h1 {
+    font-size: 1.75rem;
+  }
+
+  .auth-header__title p {
+    font-size: var(--text-sm);
+  }
+
+  .auth-container__main {
     padding: 0.625rem 1rem;
     padding-bottom: 2rem;
   }

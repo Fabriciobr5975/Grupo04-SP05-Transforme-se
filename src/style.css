@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   /* Cores */
-  --color-background: #f3e7d4;
+  --color-background: #FFF5E8;
   --color-secondary: #fff5e8;
-  --color-primary: #fdedd3;
+  --color-primary: #f3e7d4;
+  --color-green: #2f6b4d;
 
   /* Tamanhos */
   --max-width-xl: 1500px;
@@ -38,4 +39,126 @@ body {
   width: 100%;
   height: 100vh;
   flex: 1;
+}
+
+/* ========== BASE LAYOUT ========== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  padding-inline: 1rem;
+}
+
+/* ========== Estilos para o botão ========== */
+.button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font: 600 1rem "Manrope";
+  background-color: #224435;
+  border: 2px solid #05271d;
+  border-radius: 0.5rem;
+  color: #fff5e8;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 0.5rem;
+   transition:
+    background-color 300ms ease,
+    color 300ms ease;
+  box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background-color: #fff5e8;
+  color: #224435;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* ========== Estilos para Input ========== */
+
+.input__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.275rem;
+}
+
+.input__label {
+  display: flex;
+  padding-inline: 0.25rem;
+}
+
+.input__label label {
+  text-align: start;
+  font: 600 0.95rem/1.5 "Manrope";
+  letter-spacing: 0.025rem;
+}
+
+.input__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: white;
+  letter-spacing: 0.025rem;
+  padding-inline: 1rem;
+  padding-block: 0.625rem;
+  outline: none;
+  border-radius: 0.5rem;
+  border: 2px solid black;
+  transition: 100ms ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font: 600 1rem "Manrope";
+}
+
+.input__main input {
+  flex: 1;
+  appearance: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.input__main input:read-only {
+  cursor: not-allowed;
+}
+
+.input__main input::placeholder {
+  color: #6a7282;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.input__main:focus-within {
+  border: 2px solid #b2aa98;
+}
+
+.input__main:focus {
+  outline: 2px solid #dbeafe;
+}
+
+.input__main input:-webkit-autofill,
+.input__main input:-webkit-autofill:hover,
+.input__main input:-webkit-autofill:focus,
+.input__main input:-webkit-autofill:active {
+  transition: 5000s ease-in-out 0s;
 }

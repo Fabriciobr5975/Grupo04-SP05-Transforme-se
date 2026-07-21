@@ -1,15 +1,12 @@
-
 export default function HeadingSection (heading, text) {
-    ensureStyle();
-
     return (`
-       <header class="heading-section">
-          <div class="heading-section__title">
+       <header class="auth-header__section">
+          <div class="auth-header__title">
             <h1>${heading}</h1>
             <p>${text}</p>
           </div>
 
-          <button title="Voltar" class="heading-section__button" type="button" onclick="window.history.back()">
+          <button title="Voltar" class="auth-header__button" type="button" onclick="window.history.back()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="60"
@@ -37,13 +34,3 @@ export default function HeadingSection (heading, text) {
         </header> 
     `);
 }
-
-const ensureStyle = () => {
-    const existingStyle = document.querySelector("link[data-page-style]");
-    if (existingStyle) return;
-
-    const style = document.createElement("link");
-    style.rel = "stylesheet";
-    style.href = "/src/pages/auth/common/style.css";
-    document.head.appendChild(style);
-};
