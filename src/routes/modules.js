@@ -1,5 +1,5 @@
 
-export const PublicRoutes = Object.freeze([
+export const ApplicationRoutes = Object.freeze([
   {
     path: "/",
     component: () => import("../pages/home/index.js"),
@@ -39,5 +39,21 @@ export const PublicRoutes = Object.freeze([
   {
     path: "/profile/orders",
     component: () => import("../pages/user/orders/index.js"),
+  },
+  {
+    path: "/help-center",
+    component: () => import("../pages/help-center/index.js"),
+  },
+  {
+    path: "/terms-of-use",
+    component: () => import("../pages/legal/terms-use/index.js"),
+  },
+  {
+    path: "/privacy-policies",
+    component: () => import("../pages/legal/privacy-policies/index.js"),
+  },
+  {
+    path: "/about-us",
+    component: () => import("../pages/infos/about-us/index.js"),
   },
 ]);

@@ -55,6 +55,7 @@ body {
   margin-top: 4rem;
   margin-bottom: 2rem;
   padding-inline: 1rem;
+  overflow: hidden;
 }
 
 /* ========== Estilos para o botão ========== */

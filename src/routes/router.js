@@ -1,15 +1,14 @@
-import { PublicRoutes } from "./Modules.js";
+import { ApplicationRoutes } from "./Modules.js";
 import Render from "./Render.js";
 
 const Routes = Object.fromEntries(
-  PublicRoutes.map((route) => [route.path, route])
+  ApplicationRoutes.map((route) => [route.path, route])
 );
 
 const root = document.getElementById("root");
 const render = new Render(root);
 
 const navigateTo = (path) => {
-  sessionStorage.setItem("currentRoute", path);
   window.history.pushState({}, "", path);
   locationHandler();
 };
@@ -24,8 +23,8 @@ window.addEventListener("click", (event) => {
 
 const locationHandler = async () => {
   // pega pathname ou rota salva
-  const path = window.location.pathname || sessionStorage.getItem("currentRoute") || "/";
-  const route = Routes[path] || Routes["/"];
+  const path = window.location.pathname || "/about-us";
+  const route =  Routes["/about-us"] || Routes[path];
 
   if (!route) {
     root.innerHTML = "<p>Página não encontrada.</p>";
@@ -37,7 +36,7 @@ const locationHandler = async () => {
     const { template, styles } = page.default;
     render.render(template, styles);
   } catch (err) {
-    root.innerHTML = "<p>Erro ao carregar a rota.</p>";
+    root.innerHTML = route["/notfound"];
     console.error(err);
   }
 };
