@@ -1,0 +1,334 @@
+@import url("../../style.css");
+@import url("../home/style.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap");
+
+/* ==========================
+   FEEDBACK
+========================== */
+
+.feedback{
+    width:100%;
+    background:#FFF8EF;
+    padding:60px 20px 100px;
+}
+
+.feedback__container{
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.feedback__title{
+    margin-bottom:40px;
+    font-family:"Noto Serif",serif;
+    font-size:64px;
+    color:#5B3728;
+    text-transform:uppercase;
+}
+
+.feedback__card{
+    background:#FFFFFF;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    padding:45px;
+}
+
+.feedback__form{
+    display:flex;
+    flex-direction:column;
+    gap:45px;
+}
+
+/* ==========================
+   GRID
+========================== */
+
+.feedback__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+/* ==========================
+   GROUP
+========================== */
+
+.feedback__group{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.feedback__label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-family:"Inter",sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:#4A3326;
+}
+
+.feedback__label::before{
+    content:"";
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#FF7272;
+    flex-shrink:0;
+}
+
+/* ==========================
+   STARS
+========================== */
+
+.feedback__stars{
+    display:flex;
+    gap:12px;
+}
+
+.feedback__stars button{
+    width:42px;
+    height:42px;
+
+    border:none;
+    background:none;
+
+    font-size:34px;
+    color:#FF8B8B;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.feedback__stars button:hover{
+    transform:scale(1.15);
+    color:#FF5F5F;
+}
+
+/* ==========================
+   FACES
+========================== */
+
+.feedback__faces{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.feedback__faces button{
+    width:48px;
+    height:48px;
+
+    border:2px solid #FF8F8F;
+    border-radius:50%;
+
+    background:#FFF;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.feedback__faces button:hover{
+    background:#FFE8E8;
+    transform:translateY(-3px);
+}
+
+.feedback__faces-labels{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:10px;
+
+    font-family:"Inter",sans-serif;
+    font-size:13px;
+    color:#666;
+}
+
+/* ==========================
+   TEXTAREA
+========================== */
+
+.feedback textarea{
+
+    width:100%;
+    min-height:150px;
+
+    padding:18px;
+
+    border:2px solid #FFB6B6;
+    border-radius:12px;
+
+    resize:none;
+
+    font-family:"Inter",sans-serif;
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+.feedback textarea:focus{
+
+    border-color:#FF7C7C;
+
+}
+
+/* ==========================
+   CHIPS
+========================== */
+
+.feedback__chips{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+}
+
+.chip{
+
+    cursor:pointer;
+
+}
+
+.chip input{
+
+    display:none;
+
+}
+
+.chip span{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:8px 18px;
+
+    border:1.5px solid #FF9A9A;
+    border-radius:8px;
+
+    background:#FFF;
+
+    font-family:"Inter",sans-serif;
+    font-size:14px;
+
+    transition:.25s;
+
+}
+
+.chip input:checked + span{
+
+    background:#0C4234;
+    color:#FFF;
+    border-color:#0C4234;
+
+}
+
+.chip span:hover{
+
+    background:#FFE6E6;
+
+}
+
+/* ==========================
+   BUTTON
+========================== */
+
+.feedback__button{
+
+    align-self:center;
+
+    padding:16px 50px;
+
+    border:none;
+    border-radius:999px;
+
+    background:#0C4234;
+    color:#FFF;
+
+    font-family:"Inter",sans-serif;
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.feedback__button:hover{
+
+    background:#14614C;
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   RESPONSIVO
+========================== */
+
+@media(max-width:900px){
+
+    .feedback__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .feedback{
+
+        padding:40px 16px 70px;
+
+    }
+
+    .feedback__title{
+
+        font-size:42px;
+        text-align:center;
+
+    }
+
+    .feedback__card{
+
+        padding:28px;
+
+    }
+
+    .feedback__faces{
+
+        flex-wrap:wrap;
+        justify-content:center;
+
+    }
+
+    .feedback__faces-labels{
+
+        display:none;
+
+    }
+
+    .feedback__stars{
+
+        justify-content:center;
+
+    }
+
+    .feedback__button{
+
+        width:100%;
+
+    }
+
+}
