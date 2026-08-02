@@ -1,0 +1,566 @@
+@import url("../../style.css");
+@import url("../home/style.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif:wght@600;700&display=swap");
+
+/* ==================================================
+   BASE DA PÁGINA
+================================================== */
+
+.main-content {
+  width: 100%;
+  overflow: hidden;
+  background: #fff7ed;
+  color: #352219;
+}
+
+.main-content * {
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   NOSSA HISTÓRIA
+================================================== */
+
+.about-hero {
+  width: 100%;
+  min-height: 155px;
+  padding: 58px 20px 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff7ed;
+}
+
+.about-hero h1,
+.about-hero__title {
+  margin: 0;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1.1;
+  font-weight: 700;
+
+  color: #3d261d;
+  text-align: center;
+}
+
+/* ==================================================
+   DIVISOR ROSA
+================================================== */
+
+.about-divider {
+  display: none;
+  width: 100%;
+  height: 42px;
+  overflow: hidden;
+  background: #ffdce0;
+}
+
+.about-divider img {
+  display: block;
+  width: 100%;
+  height: 42px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Mostra o divisor depois do título */
+
+.about-hero + .about-divider {
+  display: block;
+}
+
+/* Mostra o divisor antes do bloco final */
+
+.about-moments + .about-divider,
+.about-moments-section + .about-divider {
+  display: block;
+}
+
+/* ==================================================
+   A DOCE JORNADA
+================================================== */
+
+.about-story,
+.about-journey {
+  width: 100%;
+  padding: 58px 20px 42px;
+
+  display: flex;
+  justify-content: center;
+
+  background: #fff7ed;
+}
+
+.about-story__card,
+.about-journey__card,
+.about-journey__content {
+  width: min(76vw, 1000px);
+  padding: 38px 42px;
+
+  background: #fff3eb;
+  border: 1px solid rgba(95, 60, 45, 0.08);
+  border-radius: 11px;
+
+  box-shadow:
+    0 7px 16px rgba(54, 38, 29, 0.22),
+    0 1px 3px rgba(54, 38, 29, 0.12);
+}
+
+.about-story__card::before,
+.about-story__card::after {
+  display: none;
+}
+
+.about-story h2,
+.about-story__card h2,
+.about-journey h2 {
+  margin: 0 0 24px;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #291910;
+}
+
+.about-story p,
+.about-story__card p,
+.about-journey p {
+  margin: 0 0 22px;
+
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+
+  color: #231d19;
+  text-align: justify;
+}
+
+.about-story p:last-child,
+.about-story__card p:last-child,
+.about-journey p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   VENHA SE APAIXONAR TAMBÉM
+================================================== */
+
+.about-love {
+  width: min(76vw, 1000px);
+  min-height: 265px;
+
+  margin: 0 auto;
+  padding: 26px 0 50px;
+
+  display: grid;
+  grid-template-columns: 38% 62%;
+  align-items: center;
+
+  background: transparent;
+}
+
+.about-love::before,
+.about-love::after,
+.about-love__image::before {
+  display: none;
+}
+
+.about-love__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-love__image img {
+  display: block;
+  width: 100%;
+  max-width: 245px;
+  height: 205px;
+
+  object-fit: contain;
+  filter: none;
+}
+
+.about-love__content {
+  max-width: none;
+  padding-left: 22px;
+}
+
+.about-love__content h2 {
+  margin: 0;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(27px, 3vw, 36px);
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #3d261d;
+}
+
+.about-love__content p,
+.about-love__button {
+  display: none;
+}
+
+/* ==================================================
+   A EXPERIÊNCIA
+================================================== */
+
+.about-experience {
+  width: min(76vw, 1000px);
+
+  margin: 0 auto 65px;
+  padding: 36px 38px;
+
+  background: #e4e8dc;
+  border: 1px solid rgba(58, 77, 54, 0.08);
+  border-radius: 11px;
+
+  box-shadow:
+    0 7px 16px rgba(54, 38, 29, 0.22),
+    0 1px 3px rgba(54, 38, 29, 0.12);
+}
+
+.about-experience__content {
+  width: 100%;
+}
+
+.about-experience h2,
+.about-experience__content h2 {
+  margin: 0 0 24px;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #291910;
+}
+
+.about-experience p,
+.about-experience__content p {
+  margin: 0 0 22px;
+
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+
+  color: #231d19;
+  text-align: justify;
+}
+
+.about-experience p:last-child {
+  margin-bottom: 0;
+}
+
+/* Esconde enfeites antigos */
+
+.about-experience__sparkles {
+  display: none;
+}
+
+/* ==================================================
+   INGREDIENTES DE PRIMEIRA
+================================================== */
+
+.about-quality,
+.about-ingredients,
+.about-experience-highlight {
+  width: min(76vw, 1000px);
+  min-height: 225px;
+
+  margin: 0 auto 64px;
+
+  display: grid;
+  grid-template-columns: 68% 32%;
+  align-items: center;
+
+  background: transparent;
+}
+
+.about-quality h2,
+.about-ingredients h2,
+.about-experience-highlight h2 {
+  margin: 0;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(27px, 3vw, 36px);
+  line-height: 1.25;
+  font-weight: 700;
+
+  color: #3d261d;
+}
+
+.about-quality img,
+.about-ingredients img,
+.about-experience-highlight img {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  height: 190px;
+
+  margin-left: auto;
+
+  object-fit: contain;
+}
+
+/* ==================================================
+   PEQUENOS MOMENTOS
+================================================== */
+
+.about-moments,
+.about-moments-section {
+  width: min(76vw, 1000px);
+
+  margin: 0 auto 64px;
+  padding: 36px 38px;
+
+  background: #fdebee;
+  border: 1px solid rgba(112, 64, 72, 0.07);
+  border-radius: 11px;
+
+  box-shadow:
+    0 7px 16px rgba(54, 38, 29, 0.22),
+    0 1px 3px rgba(54, 38, 29, 0.12);
+}
+
+.about-moments h2,
+.about-moments-section h2 {
+  margin: 0 0 24px;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #291910;
+}
+
+.about-moments p,
+.about-moments-section p {
+  margin: 0 0 22px;
+
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+
+  color: #231d19;
+  text-align: justify;
+}
+
+.about-moments p:last-child,
+.about-moments-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   BLOCO FINAL COM LOGO E FRASE
+================================================== */
+
+.about-invitation {
+  width: 100%;
+  min-height: 285px;
+  padding: 42px 20px 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff7ed;
+  text-align: center;
+}
+
+.about-invitation img,
+.about-invitation__image,
+.about-invitation__heart {
+  display: block;
+  width: 155px;
+  height: 155px;
+
+  margin: 0 auto 22px;
+
+  object-fit: contain;
+}
+
+.about-invitation h2,
+.about-invitation__title {
+  max-width: 620px;
+  margin: 0 auto;
+
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  line-height: 1.3;
+  font-weight: 700;
+
+  color: #07513e;
+  text-align: center;
+}
+
+.about-invitation p,
+.about-invitation__text,
+.about-invitation__sparkle {
+  display: none;
+}
+
+/* ==================================================
+   AJUSTES PARA ESTRUTURAS ALTERNATIVAS
+================================================== */
+
+.about-experience__card,
+.about-moments__card {
+  width: 100%;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.about-quality__content,
+.about-ingredients__content {
+  display: flex;
+  align-items: center;
+}
+
+.about-quality__image,
+.about-ingredients__image {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 900px) {
+  .about-story__card,
+  .about-journey__card,
+  .about-journey__content,
+  .about-love,
+  .about-experience,
+  .about-quality,
+  .about-ingredients,
+  .about-experience-highlight,
+  .about-moments,
+  .about-moments-section {
+    width: min(86vw, 1000px);
+  }
+}
+
+@media (max-width: 700px) {
+  .about-hero {
+    min-height: 125px;
+    padding: 44px 18px 30px;
+  }
+
+  .about-hero h1,
+  .about-hero__title {
+    font-size: 36px;
+  }
+
+  .about-divider,
+  .about-divider img {
+    height: 32px;
+  }
+
+  .about-story,
+  .about-journey {
+    padding: 42px 16px 32px;
+  }
+
+  .about-story__card,
+  .about-journey__card,
+  .about-journey__content,
+  .about-experience,
+  .about-moments,
+  .about-moments-section {
+    width: calc(100% - 32px);
+    padding: 28px 24px;
+  }
+
+  .about-story h2,
+  .about-story__card h2,
+  .about-journey h2,
+  .about-experience h2,
+  .about-moments h2 {
+    font-size: 21px;
+  }
+
+  .about-story p,
+  .about-story__card p,
+  .about-journey p,
+  .about-experience p,
+  .about-moments p {
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .about-love {
+    width: calc(100% - 32px);
+    padding: 20px 0 45px;
+
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    text-align: center;
+  }
+
+  .about-love__image img {
+    max-width: 210px;
+    height: 175px;
+  }
+
+  .about-love__content {
+    padding-left: 0;
+  }
+
+  .about-love__content h2 {
+    font-size: 28px;
+  }
+
+  .about-quality,
+  .about-ingredients,
+  .about-experience-highlight {
+    width: calc(100% - 32px);
+    min-height: auto;
+
+    grid-template-columns: 1fr;
+    gap: 25px;
+
+    text-align: center;
+  }
+
+  .about-quality img,
+  .about-ingredients img,
+  .about-experience-highlight img {
+    max-width: 165px;
+    height: 165px;
+    margin: 0 auto;
+  }
+
+  .about-invitation {
+    min-height: 245px;
+    padding: 36px 18px;
+  }
+
+  .about-invitation img,
+  .about-invitation__image,
+  .about-invitation__heart {
+    width: 130px;
+    height: 130px;
+  }
+
+  .about-invitation h2,
+  .about-invitation__title {
+    font-size: 29px;
+  }
+}
