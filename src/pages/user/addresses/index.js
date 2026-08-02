@@ -1,6 +1,5 @@
-import Layout from "../../../components/layouts/index.js";
-import BaseLayout from "../common/layout/BaseLayout.js";
-import { Button } from "../../../components/button/index.js";
+import BaseLayout from "../../../layouts/index.js";
+import Button from "../../../components/button/index.js";
 
 const template = `
   <div class="layout-user-page">
@@ -29,14 +28,14 @@ const template = `
           </div>
 
         </article>
-        ${Button("button", `<i class="fa-solid fa-plus icon-plus__address"></i>Adicionar novo endereço`)}
+        ${Button({type: "button", innerText: `<i class="fa-solid fa-plus icon-plus__address"></i>Adicionar novo endereço`})}
       </section>
     </div>
   </div>  
 `;
 
 const UserAddressesPage = {
-  template = Layout(template),
+  template: BaseLayout(template),
   styles: "/src/pages/user/addresses/style.css"
 };
 

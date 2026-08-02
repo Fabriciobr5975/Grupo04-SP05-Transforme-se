@@ -1,4 +1,4 @@
-export default function Input(id, label = "campo", props = {}) {
+export default function Input(id, label = null, props = {}) {
   const { innerText = "", ...rest } = props;
 
   const attrs = Object.entries(rest)
@@ -10,7 +10,7 @@ export default function Input(id, label = "campo", props = {}) {
   return `
     <div class="input__content">
       <div class="input__label">
-        <label for="${id}">${label}</label>
+        ${!label ? "" : `<label for="${id}">${label}</label>` }
       </div>
       <div class="input__main">
         <input id=${id} ${attrs} />

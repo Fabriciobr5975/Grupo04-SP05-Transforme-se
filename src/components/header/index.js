@@ -10,34 +10,35 @@ export default function Header() {
           href="/"
           aria-label="Voltar para a página principal"
           class="header__content_img"
+          data-route
         >
           <img
-            src="/src/assets/images/logo.svg"
+            src="/src/assets/images/header-logo.svg"
             alt="Logo Nossa confeitaria"
           />
         </a>
         <nav class="navbar">
           <ul class="navbar__list">
-            <li class="navbar__list__item">
-              <a href="#">
+            <li class="navbar__list__item" data-route>
+              <a href="/">
                 Início
                 <hr class="navbar__list__item--active" />
               </a>
             </li>
             <li class="navbar__list__item">
-              <a href="#">
+              <a href="/products" data-route>
                 Nosso Cardápio
                 <hr class="navbar__list__item--no-active" />
               </a>
             </li>
             <li class="navbar__list__item">
-              <a href="#">
+              <a href="/about-us" data-route>
                 Sobre Nós
                 <hr class="navbar__list__item--no-active" />
               </a>
             </li>
             <li class="navbar__list__item">
-              <a href="#">
+              <a href="/help-center" data-route>
                 Contato
                 <hr class="navbar__list__item--no-active" />
               </a>

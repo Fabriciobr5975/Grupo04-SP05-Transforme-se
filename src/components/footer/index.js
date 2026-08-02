@@ -8,7 +8,7 @@ export default function Footer() {
       <section class="footer__content">
         <div class="footer__content-img">
           <img
-            src="/src/assets/images/logo.svg"
+            src="/src/assets/images/header-logo.svg"
             alt="Logo Nossa confeitaria"
           />
           <span>Cada receita, uma história, cada doce, uma lembrança</span>
@@ -16,18 +16,18 @@ export default function Footer() {
 
         <nav class="footer__nav" aria-label="Navegação do rodapé">
           <div class="footer__nav-group">
-            <h2>Institucional</h2>
+            <h2>Nossa Doceria</h2>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Sobre Nós</a></li>
-              <li><a href="#">Login</a></li>
+              <li><a href="/" data-route>Home</a></li>
+              <li><a href="/about-us" data-route>Sobre Nós</a></li>
+              <li><a href="/auth/login" data-route>Login</a></li>
             </ul>
           </div>
 
           <div class="footer__nav-group">
             <h2>Produtos</h2>
             <ul>
-              <li><a href="#">Produtos</a></li>
+              <li><a href="/">Produtos</a></li>
               <li><a href="#">Bolos</a></li>
               <li><a href="#">Tortas</a></li>
               <li><a href="#">Especiais</a></li>
@@ -38,17 +38,15 @@ export default function Footer() {
           <div class="footer__nav-group">
             <h2>Ajuda</h2>
             <ul>
-              <li><a href="#">Central de Ajuda</a></li>
-              <li><a href="#">Perguntas Frequentes</a></li>
-              <li><a href="#">Acessibilidade</a></li>
+              <li><a href="/help-center" data-route>Central de Ajuda</a></li>
             </ul>
           </div>
 
           <div class="footer__nav-group">
             <h2>Legal</h2>
             <ul>
-              <li><a href="#">Termos</a></li>
-              <li><a href="#">Privacidade</a></li>
+              <li><a href="/terms-use">Termos</a></li>
+              <li><a href="/privacy-terms">Privacidade</a></li>
             </ul>
           </div>
         </nav>

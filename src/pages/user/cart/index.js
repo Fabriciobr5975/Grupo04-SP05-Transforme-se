@@ -1,5 +1,4 @@
-import Layout from "../../../components/layouts/index.js";
-import BaseLayout from "../common/layout/BaseLayout.js";
+import BaseLayout from "../../../layouts/index.js";
 
 const template = `
   <div class="layout-user-page">
@@ -28,7 +27,7 @@ const template = `
             <div class="cart-page__item-body">
               <div class="cart-page__item-heading">
                 <h2>Box de Trufas Premium</h2>
-                <span>R$ 79,90</span>
+                <span>R$ 1179,90</span>
               </div>
 
               <p class="cart-page__item-meta">Doces • 420g</p>
@@ -37,7 +36,7 @@ const template = `
                 <div class="cart-page__quantity">
                   <span>Quantidade:</span>
                   <div class="cart-page__quantity-control">
-                    <button type="button" aria-label="Diminuir quantidade">−</button>
+                    <button type="button" aria-label="Diminuir quantidade">-</button>
                     <span>1</span>
                     <button type="button" aria-label="Aumentar quantidade">+</button>
                   </div>
@@ -121,7 +120,7 @@ const template = `
 `;
 
 const UserCartPage = {
-  template = Layout(template),
+  template: BaseLayout(template),
   styles: "/src/pages/user/cart/style.css"
 };
 

@@ -1,5 +1,4 @@
-import Layout from "../../../components/layouts/index.js";
-import BaseLayout from "../common/layout/BaseLayout.js";
+import BaseLayout from "../../../layouts/index.js";
 
 const template = `
   <div class="layout-user-page">
@@ -119,7 +118,7 @@ const template = `
 `;
 
 const UserOrderPage = {
-  template = Layout(template),
+  template: BaseLayout(template),
   styles: "/src/pages/user/orders/style.css"
 };
 

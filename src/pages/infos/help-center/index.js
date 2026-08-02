@@ -83,7 +83,7 @@ const template = `
 
 const HelpCenterPage = {
   template: BaseLayout(template),
-  styles: "/src/pages/help-center/style.css"
+  styles: "/src/pages/infos/help-center/style.css"
 };
 
 export default HelpCenterPage;

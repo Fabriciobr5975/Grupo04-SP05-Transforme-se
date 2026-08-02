@@ -1,0 +1,135 @@
+.confirm-checkout-page {
+  min-height: 100vh;
+  background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-family: "Manrope", sans-serif;
+}
+
+.confirm-checkout__main {
+  background-color: #fff;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 1.5rem;
+  border: 1px solid #f3f4f6;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.confirm-checkout__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-checkout__image-logo {
+  width: 10rem;
+  flex-shrink: 0;
+}
+
+.confirm-checkout__title {
+  margin-top: 0.5rem;
+  font:
+    800 1.85rem/1.2 "Noto Serif",
+    serif;
+}
+
+.confirm-checkout__title-complement {
+  margin: 0.125rem 0.5rem;
+  font:
+    600 1rem/1.2 "Manrope",
+    sans-serif;
+}
+
+.confirm-checkout__title-complement sup {
+  font-size: 0.925rem;
+}
+
+.confirm-checkout__title-complement strong {
+  color: #2f6b4d;
+}
+
+.confirm-checkout__content {
+  font:
+    500 1.05rem/1.625 "Manrope",
+    sans-serif;
+  margin-bottom: 2rem;
+}
+
+.confirm-checkout__buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-checkout__button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.25rem;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+.confirm-checkout__button--green {
+  color: var(--color-secondary);
+  background-color: #0b4233;
+  border: 2px solid #05271d;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.confirm-checkout__button--green:hover {
+  background-color: var(--color-secondary);
+  color: #0b4233;
+}
+
+.confirm-checkout__button--white {
+  background-color: #fff;
+  color: #364153;
+  border: 2px solid #364153;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.confirm-checkout__button--white:hover {
+  transform: scale(98%);
+  background-color: #f9fafb;
+}
+
+.confirm-checkout__button > i {
+  margin-right: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .confirm-checkout__main {
+    padding: 1rem;
+  }
+
+  .confirm-checkout__content {
+    font-size: 0.875rem;
+  }
+
+  .confirm-checkout__title {
+    font-size: 1.5rem;
+  }
+
+  .confirm-checkout__buttons {
+    flex-direction: column;
+  }
+}

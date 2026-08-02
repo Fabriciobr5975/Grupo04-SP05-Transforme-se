@@ -23,8 +23,8 @@ window.addEventListener("click", (event) => {
 
 const locationHandler = async () => {
   // pega pathname ou rota salva
-  const path = window.location.pathname || "/about-us";
-  const route =  Routes["/about-us"] || Routes[path];
+  const path = window.location.pathname || "/profile/favorites";
+  const route =  Routes["/profile/favorites"] || Routes[path] || Routes["/notfound"];
 
   if (!route) {
     root.innerHTML = "<p>Página não encontrada.</p>";
@@ -36,7 +36,7 @@ const locationHandler = async () => {
     const { template, styles } = page.default;
     render.render(template, styles);
   } catch (err) {
-    root.innerHTML = route["/notfound"];
+    root.innerHTML = "<p>Página não encontrada.</p>";
     console.error(err);
   }
 };

@@ -9,7 +9,7 @@ export default function ProductCard() {
       <div class="product-card__media">
         <a
           class="product-card__media-link"
-          href="#"
+          href="/product"
           aria-label="Adicionar produto"
           data-route
         >

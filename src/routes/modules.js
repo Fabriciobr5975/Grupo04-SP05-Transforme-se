@@ -33,7 +33,7 @@ export const ApplicationRoutes = Object.freeze([
     component: () => import("../pages/user/addresses/index.js"),
   },
   {
-    path: "/profile/cart",
+    path: "/cart",
     component: () => import("../pages/user/cart/index.js"),
   },
   {
@@ -42,7 +42,7 @@ export const ApplicationRoutes = Object.freeze([
   },
   {
     path: "/help-center",
-    component: () => import("../pages/help-center/index.js"),
+    component: () => import("../pages/infos/help-center/index.js"),
   },
   {
     path: "/terms-of-use",
@@ -55,5 +55,25 @@ export const ApplicationRoutes = Object.freeze([
   {
     path: "/about-us",
     component: () => import("../pages/infos/about-us/index.js"),
+  },
+  {
+    path: "/product",
+    component: () => import("../pages/product-detail/index.js"),
+  },
+  {
+    path: "/checkout",
+    component: () => import("../pages/user/checkout/index.js"),
+  },
+  {
+    path: "/checkout/confirm",
+    component: () => import("../pages/user/checkout/confirm-message/index.js"),
+  },
+  {
+    path: "/products",
+    component: () => import("../pages/catalog/index.js"),
+  },
+  {
+    path: "/profile/favorites",
+    component: () => import("../pages/user/favorites/index.js"),
   },
 ]);

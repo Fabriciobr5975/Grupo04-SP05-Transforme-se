@@ -10,7 +10,7 @@ const template = `
       </div>
 
       <div class="about-us__sections">
-              <div class="about-us__image-decoration"></div>
+        <div class="about-us__image-decoration"></div>
 
         <section class="about-us__section-content">
           <h2 class="about-us__section__title">A Doce Jornada</h2>
