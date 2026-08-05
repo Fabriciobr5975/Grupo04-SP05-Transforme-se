@@ -40,9 +40,10 @@ export default function ProductCard() {
             innerText: `
                 Ver detalhes
             `,
+            route: "/product"
             })}
 
-          <a class="product-card__details-link" href="#" data-route>
+          <a class="product-card__details-link" href="/checkout" data-route>
             <i class="fa-solid fa-cart-plus product-card__icon"></i>
             Comprar    
           </a>

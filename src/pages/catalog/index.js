@@ -190,7 +190,7 @@ const template = `
 
 const ProductPage = {
     template: BaseLayout(template),
-    styles: "/src/pages/product/style.css"
+    styles: "/src/pages/catalog/style.css"
 };
 
 export default ProductPage;

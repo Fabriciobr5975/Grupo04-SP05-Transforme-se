@@ -26,7 +26,7 @@ export default function Header() {
               </a>
             </li>
             <li class="navbar__list__item">
-              <a href="/products" data-route>
+              <a href="/catalog" data-route>
                 Nosso Cardápio
                 <hr class="navbar__list__item--no-active" />
               </a>

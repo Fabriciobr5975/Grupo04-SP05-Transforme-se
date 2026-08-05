@@ -2,6 +2,13 @@ import BaseLayout from "../../../layouts/index.js";
 
 const template = `
   <div class="layout-user-page">
+    <div class="user-page__topbar">
+      <button type="button" class="user-page__back-button">
+        <i class="fa-solid fa-arrow-left user-page-icon"></i>
+        Voltar
+      </button>
+    </div>
+
     <div class="layout-user-page__content">
       <section class="orders-page">
         <header class="orders-page__header">

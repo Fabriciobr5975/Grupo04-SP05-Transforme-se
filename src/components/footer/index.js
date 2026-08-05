@@ -27,11 +27,11 @@ export default function Footer() {
           <div class="footer__nav-group">
             <h2>Produtos</h2>
             <ul>
-              <li><a href="/">Produtos</a></li>
-              <li><a href="#">Bolos</a></li>
-              <li><a href="#">Tortas</a></li>
-              <li><a href="#">Especiais</a></li>
-              <li><a href="#">Novidades</a></li>
+              <li><a href="/catalog" data-route>Produtos</a></li>
+              <li><a href="/catalog" data-route>Bolos</a></li>
+              <li><a href="/catalog" data-route>Tortas</a></li>
+              <li><a href="/catalog" data-route>Especiais</a></li>
+              <li><a href="/catalog" data-route>Novidades</a></li>
             </ul>
           </div>
 
@@ -45,8 +45,8 @@ export default function Footer() {
           <div class="footer__nav-group">
             <h2>Legal</h2>
             <ul>
-              <li><a href="/terms-use">Termos</a></li>
-              <li><a href="/privacy-terms">Privacidade</a></li>
+              <li><a href="/terms-of-use" data-route>Termos</a></li>
+              <li><a href="/privacy-terms" data-route>Privacidade</a></li>
             </ul>
           </div>
         </nav>

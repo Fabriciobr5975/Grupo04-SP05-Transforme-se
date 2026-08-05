@@ -2,6 +2,13 @@ import BaseLayout from "../../../layouts/index.js";
 
 const template = `
   <div class="checkout-page">
+    <div class="user-page__topbar">
+      <button type="button" class="user-page__back-button">
+        <i class="fa-solid fa-arrow-left user-page-icon"></i>
+        Voltar
+      </button>
+    </div>
+
     <section class="checkout-page__main">
       <h1 class="checkout-page__title">Checkout</h1>
       <p class="checkout-page__title-complement">

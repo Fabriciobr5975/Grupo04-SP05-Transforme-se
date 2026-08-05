@@ -26,7 +26,7 @@ const template = `
           <div class="profile-links">
             <h2 class="profile-links__title">Links Úteis:</h2>
 
-            <a href="/addresses" class="profile-links__item" data-route>
+            <a href="/profile/addresses" class="profile-links__item" data-route>
               <div class="profile-links__item__title">  
                 <i class="fa-solid fa-location-dot"></i>
                 Endereços
@@ -44,7 +44,7 @@ const template = `
                 Revise ou acompanhe todos os seus pedidos
               </p>
             </a>
-            <a href="#" class="profile-links__item">
+            <a href="/profile/feedback" class="profile-links__item">
               <div class="profile-links__item__title">  
                 <i class="fa-solid fa-credit-card"></i>
                 Cartões
@@ -53,7 +53,7 @@ const template = `
                 Insira, altere ou remova suas suas avaliações pós compra
               </p>
             </a>
-            <a href="#" class="profile-links__item">
+            <a href="/profile/favorites" class="profile-links__item" data-route>
               <div class="profile-links__item__title">  
                 <i class="fa-solid fa-heart"></i>
                 Favoritos

@@ -15,12 +15,12 @@ const LoginPage = {
 
         <form class="auth-main__form">
           <div class="auth-main__form-content">
-            ${Input("login-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu email", required: true })}
-            ${Input("login-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", autocomplete: "senha atual", required: true })}
+            ${Input("login-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu email" })}
+            ${Input("login-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", autocomplete: "senha atual" })}
           </div>
 
           <div>
-            ${Button({ type: "submit", innerText: "Entrar" })}
+            ${Button({ type: "button", innerText: "Entrar", route: "/auth/opcional/address" })}
             <button type="button" class="auth-form__btn-forgot-password">
               Esqueci minha senha
             </button>

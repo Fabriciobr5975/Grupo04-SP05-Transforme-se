@@ -3,6 +3,13 @@ import Button from "../../../components/button/index.js";
 
 const template = `
   <div class="layout-user-page">
+    <div class="user-page__topbar">
+      <button type="button" class="user-page__back-button">
+        <i class="fa-solid fa-arrow-left user-page-icon"></i>
+        Voltar
+      </button>
+    </div>
+    
     <div class="layout-user-page__content">
       <header class="user-address__header">
         <h1>Meus Endereços</h1>

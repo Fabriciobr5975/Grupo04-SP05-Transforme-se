@@ -62,14 +62,14 @@ const template = `
             <span class="product-detail-page__price-unit">/kg</span>
           </p>
           <div class="product-detail-page__buttons">
-            <button type="button" class="product-detail-page__button">
+            <a href="/checkout" class="product-detail-page__button" data-route>
               <i class="fa-solid fa-cart-plus"></i>
               Comprar
-            </button>
-            <button type="button" class="product-detail-page__button">
+            </a>
+            <a href="/cart" class="product-detail-page__button" data-route>
               <i class="fa-solid fa-basket-shopping"></i>
               Adicionar ao carrinho
-            </button>
+            </a>
           </div>
         </div>
       </div>

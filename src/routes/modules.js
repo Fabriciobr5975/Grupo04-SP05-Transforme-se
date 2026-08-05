@@ -69,11 +69,15 @@ export const ApplicationRoutes = Object.freeze([
     component: () => import("../pages/user/checkout/confirm-message/index.js"),
   },
   {
-    path: "/products",
+    path: "/catalog",
     component: () => import("../pages/catalog/index.js"),
   },
   {
     path: "/profile/favorites",
     component: () => import("../pages/user/favorites/index.js"),
+  },
+  {
+    path: "/profile/feedback",
+    component: () => import("../pages/feedback/index.js"),
   },
 ]);

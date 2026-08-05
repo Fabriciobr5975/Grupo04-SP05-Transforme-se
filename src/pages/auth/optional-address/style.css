@@ -6,6 +6,36 @@
   justify-content: center;
 }
 
+.auth-header__section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.auth-header__title {
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
+}
+
+.auth-header__title h1 {
+  color: #3b241a;
+  font: bold 2.25rem "Noto Serif";
+}
+
+.auth-header__title p {
+  font: 600 1rem "Manrope";
+  margin-top: 0.125rem;
+}
+
+.auth-header__button {
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 100%;
+  transition: 300ms ease;
+}
+
 .auth-address-container__main {
   width: 100%;
   max-width: 840px;
@@ -53,5 +83,43 @@
 }
 
 .auth-address-main__form__button button {
-  margin-block: .5rem;
+  margin-block: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .auth-header__button {
+    width: 3rem;
+  }
+
+  .auth-header__title h1 {
+    font-size: 1.75rem;
+  }
+
+  .auth-header__title p {
+    font-size: var(--text-sm);
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-address-container__main {
+    margin: 2rem 1rem;
+    padding: 1rem;
+  }
+
+  .auth-address-main__section {
+    gap: 1.5rem;
+  }
+
+  .auth-header__title h1 {
+    font-size: 1.625rem;
+  }
+
+  .auth-address-form__row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .auth-address-main__form-content {
+    gap: 1rem;
+  }
 }
