@@ -219,8 +219,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.7rem;
+  min-height: 2rem;
   border-radius: 0.75rem;
+  text-decoration: none;
+  width: 45%;
+  min-width: 10rem;
   cursor: pointer;
   font-weight: 700;
   transition:
@@ -237,7 +240,7 @@
   border: 2px solid #05271d;
   background-color: #224435;
   color: #fff5e8;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem;
 }
 
 .orders-page__button--primary:hover {
@@ -249,14 +252,14 @@
   border: 1px solid #05271d;
   background-color: #f3e7d4;
   color: #05271d;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem;
 }
 
 .orders-page__button--ghost {
   border: 1px solid #cbd5e1;
   background-color: transparent;
   color: #475569;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem;
 }
 
 .orders-page__footer {
@@ -298,6 +301,43 @@
   color: #111827;
 }
 
+@media (max-width: 1024px) {
+  .layout-user-page {
+    margin-top: 6rem;
+    margin-bottom: 7rem;
+    padding-inline: 0rem;
+  }
+
+  .layout-user-page__content {
+    padding: 1.25rem;
+  }
+
+  .orders-page__card-header h3 {
+    font-size: 0.9rem;
+  }
+
+  .orders-page__card-status--delivered {
+    font-size: 0.8rem;
+  }
+
+  .orders-page__button {
+    width: 100%;
+    font-size: 0.975rem;
+  }
+
+  .orders-page__button--primary {
+    padding: 0.5rem;
+  }
+
+  .orders-page__button--secondary {
+    padding: 0.5rem;
+  }
+
+  .orders-page__button--ghost {
+    padding: 0.5rem;
+  }
+}
+
 @media (max-width: 700px) {
   .layout-user-page {
     margin-top: 6rem;
@@ -307,5 +347,47 @@
 
   .layout-user-page__content {
     padding: 1.25rem;
+  }
+
+  .orders-page__header-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .orders-page__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .orders-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orders-page__badge {
+    display: none;
+  }
+
+  .orders-page__button {
+    font-size: 0.9rem;
+  }
+
+  .orders-page__item-heading h4 {
+    font-size: 0.925rem;
+  }
+
+  .orders-page__total {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .orders-page__item-heading {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .orders-page__footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

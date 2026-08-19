@@ -1,4 +1,7 @@
 import BaseLayout from "../../../layouts/index.js";
+import { ProfileService } from "./ProfileService.js";
+
+const profileService = new ProfileService();
 
 const template = `
   <div class="layout-user-page">
@@ -9,17 +12,17 @@ const template = `
           
           <section class="profile__content__main">
             <div class="profile__header">
-              <div class="profile__header__badge">J</div>
+              <div class="profile__header__badge">${profileService.getProfileData().initial}</div>
               <div class="profile__header__main">
-                <h1>João Silva</h1>
-                <p>joaosilva@teste.com</p>
+                <h1>${profileService.getProfileData().userName}</h1>
+                <p>${profileService.getProfileData().email}</p>
               </div>
             </div>
             <button title="Editar perfil" type="button" class="profile__header__btn">
               <i class="fa-regular fa-pen-to-square"></i>
               <span>Editar perfil</span>
             </button>
-            <p class="profile__header-account-creation">Conta criada há: <strong>01d 02h 53m</strong></p>
+            <p class="profile__header-account-creation">Conta criada há: <strong>${profileService.getProfileData().accountCreateAt}</strong></p>
             <a href="/privacy-terms" class="profile__header-terms-of-use" data-route>Termos de Uso</a>
           </section>
 
@@ -46,8 +49,8 @@ const template = `
             </a>
             <a href="/profile/feedback" class="profile-links__item">
               <div class="profile-links__item__title">  
-                <i class="fa-solid fa-credit-card"></i>
-                Cartões
+                <i class="fa-solid fa-star"></i>
+                Avaliações
               </div>
               <p>
                 Insira, altere ou remova suas suas avaliações pós compra
@@ -63,7 +66,7 @@ const template = `
               </p>
             </a>
             <div class="profile-page__logout">
-            <button type="button">
+            <button type="button" id="user-logout__btn">
               <i class="fa-solid fa-door-open"></i>
               Sair da Conta
             </button>
@@ -77,7 +80,8 @@ const template = `
 
 const ProfilePage = {
   template: BaseLayout(template),
-  styles: "/src/pages/user/profile/style.css"
+  styles: "/src/pages/user/profile/style.css",
+  scripts: "/src/pages/user/profile/ProfileService.js",
 };
 
 export default ProfilePage;

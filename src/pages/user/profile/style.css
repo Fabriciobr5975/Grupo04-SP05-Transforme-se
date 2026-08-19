@@ -78,8 +78,9 @@
 }
 
 .profile__header__btn {
+  width: fit-content;
   align-self: flex-start;
-  justify-content: flex-end;
+  justify-self: flex-end;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;

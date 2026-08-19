@@ -13,14 +13,14 @@ const LoginPage = {
       <section class="auth-main__section">
         ${HeadingSection("Login", "Insira suas informações")}
 
-        <form class="auth-main__form">
+        <form class="auth-main__form" method="post" autocomplete="off">
           <div class="auth-main__form-content">
-            ${Input("login-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu email" })}
-            ${Input("login-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", autocomplete: "senha atual" })}
+            ${Input("login-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu email", required: true })}
+            ${Input("login-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", autocomplete: "senha atual", required: true })}
           </div>
 
           <div>
-            ${Button({ type: "button", innerText: "Entrar", route: "/auth/opcional/address" })}
+            ${Button({ type: "submit", innerText: "Entrar", id: "form-submit-login" })}
             <button type="button" class="auth-form__btn-forgot-password">
               Esqueci minha senha
             </button>
@@ -35,7 +35,8 @@ const LoginPage = {
     </main>
   </div>
   `,
-  styles: "/src/pages/auth/style.css"
+  styles: "/src/pages/auth/style.css",
+  scripts: "/src/pages/auth/login/LoginService.js"
 }
 
 export default LoginPage;

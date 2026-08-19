@@ -46,7 +46,7 @@ export default function Footer() {
             <h2>Legal</h2>
             <ul>
               <li><a href="/terms-of-use" data-route>Termos</a></li>
-              <li><a href="/privacy-terms" data-route>Privacidade</a></li>
+              <li><a href="/privacy-policies" data-route>Privacidade</a></li>
             </ul>
           </div>
         </nav>

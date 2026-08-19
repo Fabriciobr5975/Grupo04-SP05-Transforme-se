@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/index.js";
 const template = `
   <div class="checkout-page">
     <div class="user-page__topbar">
-      <button type="button" class="user-page__back-button">
+      <button type="button" class="user-page__back-button" onclick="window.history.back()">
         <i class="fa-solid fa-arrow-left user-page-icon"></i>
         Voltar
       </button>

@@ -9,7 +9,7 @@ const OpcionalRegisterUserAddressPage = {
       <section class="auth-address-main__section">
         ${HeadingSection("Endereço (opcional)", "Insira um endereço inicial para sua conta")}
         
-        <form class="auth-address-main__form">
+        <form class="auth-address-main__form" method="post" autocomplete="off">
           <div class="auth-address-main__form-content">
             <div class="auth-address-form__row">
                ${Input("register-cep", "CEP", { type: "text", name: "cep", placeholder: "Digite o seu CEP", required: true })}

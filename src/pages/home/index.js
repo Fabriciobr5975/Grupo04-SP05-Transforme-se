@@ -1,6 +1,7 @@
 import BaseLayout from "../../layouts/index.js";
 import Button from "../../components/button/index.js";
 import ProductCard from "../../components/product-card/index.js";
+import { products } from "../../../seeds/products.js";
 
 const template = `
    <div class="home-page__main">
@@ -18,8 +19,8 @@ const template = `
         </p>
 
         <div class="home-page__first-content__buttons">
-          ${Button({ type: "button", innerText: "Descubra Nossos Produtos" })}
-          ${Button({ type: "button", innerText: "Sobre Nós" })}
+          <a href="/catalog" data-route>Descubra Nossos Produtos</a>
+          <a href="/about-us" data-route>Sobre Nós</a>
         </div>
       </section>
 
@@ -60,9 +61,9 @@ const template = `
         </div>
 
         <ul class="home-page__products__list">
-          ${Array.from({length: 6}, () => `
+          ${Array.from({length: 6}, (_, i) => `
             <li class="home-page__products__item">
-              ${ProductCard()}
+              ${ProductCard(products[i])}
             </li>
           `).join("")}
         </ul>
@@ -158,7 +159,7 @@ const template = `
             <div class="home-page__reviews__author">
               <img
                 src="src/assets/images/avatar/avatar4.svg"
-                alt="Foto da cliente Ana Martins"
+                alt="Foto do cliente Lucas Martins"
                 class="home-page__reviews__author-img"
               />
               <div>

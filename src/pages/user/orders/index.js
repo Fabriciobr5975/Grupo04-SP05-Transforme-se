@@ -1,9 +1,12 @@
 import BaseLayout from "../../../layouts/index.js";
+import { useOrders } from "./OrderService.js";
+
+const orderService = useOrders();
 
 const template = `
   <div class="layout-user-page">
     <div class="user-page__topbar">
-      <button type="button" class="user-page__back-button">
+      <button type="button" class="user-page__back-button" onclick="window.history.back()">
         <i class="fa-solid fa-arrow-left user-page-icon"></i>
         Voltar
       </button>
@@ -18,106 +21,63 @@ const template = `
           </div>
 
           <div class="orders-page__header-meta">
-            <span>4 itens • 2 pedidos</span>
+            <span>${orderService.productsCount} itens • ${orderService.orderCount} pedidos</span>
           </div>
         </header>
 
         <section class="orders-page__content">
-          <article class="orders-page__card">
-            <div class="orders-page__card-header">
-              <div>
-                <h3>Pedido #1025 • Realizado em 15/07/2026</h3>
-                <p class="orders-page__card-status orders-page__card-status--delivered">
-                  Entregue: 18/07/2026
-                </p>
-              </div>
-
-              <div class="orders-page__card-actions">
-                <span class="orders-page__badge orders-page__badge--green">ENTREGUE</span>
-              </div>
-            </div>
-
-            <div class="orders-page__items">
-              <div class="orders-page__item">
-                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Produto do pedido" />
-
-                <div class="orders-page__item-body">
-                  <div class="orders-page__item-heading">
-                    <h4>Box de Trufas Premium</h4>
-                    <span>R$ 79,90</span>
+          ${Array.isArray(orderService.userOrders) && orderService.userOrders.length > 0 ?
+            orderService.userOrders.map(order => `
+              <article class="orders-page__card">
+                <div class="orders-page__card-header">
+                  <div>
+                    <h3>Pedido #${order.orderId} • Realizado em ${order.orderData}</h3>
+                    <p class="orders-page__card-status orders-page__card-status--delivered">
+                      Entrega prevista: ${order.deliveryTime}
+                    </p>
                   </div>
 
-                  <p class="orders-page__item-meta">Doces • 420g</p>
-                  <p class="orders-page__item-quantity">Quantidade: 1</p>
-
-                  <div class="orders-page__item-buttons">
-                    <button type="button" class="orders-page__button orders-page__button--secondary">
-                      Ver detalhes do produto
-                    </button>
-                    <button type="button" class="orders-page__button orders-page__button--ghost">
-                      Comprar novamente
-                    </button>
+                  <div class="orders-page__card-actions">
+                    <span class="orders-page__badge ${order.status === "ENTREGUE" ? "orders-page__badge--green" : "orders-page__badge--orange"}">${order.status}</span>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="orders-page__footer">
-              <div>
-                <p class="orders-page__footer-label">Total do Pedido</p>
-                <p class="orders-page__footer-value">1 item • Frete <span class="orders-page__freight orders-page__freight--free">Grátis</span></p>
-              </div>
-              <span class="orders-page__total">R$ 79,90</span>
-            </div>
-          </article>
+                <div class="orders-page__items">
+                  ${Array.isArray(order.products) && order.products.length > 0 ? order.products.map(p => `
+                    <div class="orders-page__item">
+                      <img src="${p.image || ''}" alt="${p.name}" />
 
-          <article class="orders-page__card">
-            <div class="orders-page__card-header">
-              <div>
-                <h3>Pedido #1024 • Realizado em 11/07/2026</h3>
-                <p class="orders-page__card-status orders-page__card-status--pending">
-                  Previsão de entrega: 16/07/2026
-                </p>
-              </div>
+                      <div class="orders-page__item-body">
+                        <div class="orders-page__item-heading">
+                          <h4>${p.name}</h4>
+                          <span>R$ ${Number(p.unitPrice).toFixed(2).replace(".", ",")}</span>
+                        </div>
 
-              <div class="orders-page__card-actions">
-                <span class="orders-page__badge orders-page__badge--orange">EM TRANSITO</span>
-              </div>
-            </div>
+                        <p class="orders-page__item-meta">${p.productDescription || ''}</p>
+                        <p class="orders-page__item-quantity">Quantidade: ${p.quantity}</p>
 
-            <div class="orders-page__items">
-              <div class="orders-page__item">
-                <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80" alt="Produto do pedido" />
-
-                <div class="orders-page__item-body">
-                  <div class="orders-page__item-heading">
-                    <h4>Mini Cheesecake de Morango</h4>
-                    <span>R$ 42,50</span>
-                  </div>
-
-                  <p class="orders-page__item-meta">Sobremesas • 200g</p>
-                  <p class="orders-page__item-quantity">Quantidade: 2</p>
-
-                  <div class="orders-page__item-buttons">
-                    <button type="button" class="orders-page__button orders-page__button--secondary">
-                      Ver detalhes do produto
-                    </button>
-                    <button type="button" class="orders-page__button orders-page__button--ghost">
-                      Comprar novamente
-                    </button>
-                  </div>
+                        <div class="orders-page__item-buttons">
+                          <a href="/product" class="orders-page__button orders-page__button--secondary" data-route>
+                            Ver detalhes do produto
+                          </a>
+                          <button type="button" class="orders-page__button orders-page__button--ghost">
+                            Comprar novamente
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  `).join('') : ''}
                 </div>
-              </div>
-            </div>
 
-            <div class="orders-page__footer">
-              <div>
-                <p class="orders-page__footer-label">Total do Pedido</p>
-                <p class="orders-page__footer-value">2 itens • Frete <span class="orders-page__freight orders-page__freight--paid">R$ 12,00</span></p>
-              </div>
-              <span class="orders-page__total">R$ 97,00</span>
-            </div>
-          </article>
+                <div class="orders-page__footer">
+                  <div>
+                    <p class="orders-page__footer-label">Total do Pedido</p>
+                    <p class="orders-page__footer-value">${order.products.length} item(s) • Frete <span class="orders-page__freight ${order.freight === 0 ? 'orders-page__freight--free' : 'orders-page__freight--paid'}">${order.freight === 0 ? 'Grátis' : `R$ ${order.freight.toFixed(2)}`}</span></p>
+                  </div>
+                  <span class="orders-page__total">R$ ${Number(order.totalOrderValue).toFixed(2).replace(".", ",")}</span>
+                </div>
+              </article>
+            `).join("") : `<div>Você ainda não tem pedidos!</div>`}
         </section>
       </section>
     </div>

@@ -39,10 +39,11 @@ export default class Render {
     if (existingScript) existingScript.remove();
 
     const script = document.createElement("script");
+    script.type = "module";
     script.src = scriptPath;
     script.setAttribute("data-page-script", "true");
 
-    document.head.appendChild(script);
+    document.body.appendChild(script);
   }
 
   removeStyle() {

@@ -1,7 +1,6 @@
 import { ApplicationRoutes } from "./Modules.js";
 import Render from "./Render.js";
 
-
 const Routes = Object.fromEntries(
   ApplicationRoutes.map((route) => [route.path, route])
 );
@@ -27,8 +26,8 @@ window.addEventListener("click", (event) => {
 const locationHandler = async () => {
   // pega pathname ou rota salva
   window.scrollTo(0, 0);
-  const path = window.location.pathname || "/notfound";
-  const route =  Routes[path] || Routes["/notfound"];
+  const path = window.location.pathname || "/";
+  const route =  Routes["/catalog"] || Routes["/notfound"];
 
   if (!route) {
     root.innerHTML = "<p>Página não encontrada.</p>";
@@ -37,8 +36,8 @@ const locationHandler = async () => {
 
   try {
     const page = await route.component();
-    const { template, styles } = page.default;
-    render.render(template, styles);
+    const { template, styles, scripts } = page.default;
+    render.render(template, styles, scripts);
   } catch (err) {
     root.innerHTML = "<p>Página não encontrada.</p>";
     console.error(err);

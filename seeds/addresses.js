@@ -1,0 +1,107 @@
+export const addresses = [
+  {
+    addressId: 1,
+    userId: 2,
+    cep: "01310-100",
+    address: "Avenida Paulista",
+    neighborhood: "Bela Vista",
+    addressLocation: "Apto 201",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "1578",
+    complement: "Condomínio Vista Paulista"
+  },
+  {
+    addressId: 2,
+    userId: 2,
+    cep: "04547-004",
+    address: "Rua Oscar Freire",
+    neighborhood: "Pinheiros",
+    addressLocation: "Casa",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "420",
+    complement: "Bloco B, térreo"
+  },
+  {
+    addressId: 3,
+    userId: 3,
+    cep: "03020-000",
+    address: "Rua da Consolação",
+    neighborhood: "Consolação",
+    addressLocation: "Sala 302",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "889",
+    complement: "Edifício Luxor"
+  },
+  {
+    addressId: 4,
+    userId: 3,
+    cep: "05508-000",
+    address: "Avenida Faria Lima",
+    neighborhood: "Jardim Paulistano",
+    addressLocation: "Apto 1403",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "2401",
+    complement: "Prédio Alfa"
+  },
+  {
+    addressId: 5,
+    userId: 3,
+    cep: "04006-100",
+    address: "Rua Vergueiro",
+    neighborhood: "Vila Mariana",
+    addressLocation: "Cobertura",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "1290",
+    complement: "Cobertura 1"
+  },
+  {
+    addressId: 6,
+    userId: 4,
+    cep: "04112-000",
+    address: "Avenida Santo Amaro",
+    neighborhood: "Moema",
+    addressLocation: "Apto 706",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "730",
+    complement: "Condomínio Parque Moema"
+  },
+  {
+    addressId: 7,
+    userId: 4,
+    cep: "05611-020",
+    address: "Rua Teodoro Sampaio",
+    neighborhood: "Pinheiros",
+    addressLocation: "Casa",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "190",
+    complement: "Fundos"
+  },
+  {
+    addressId: 8,
+    userId: 5,
+    cep: "08250-020",
+    address: "Rua do Oratório",
+    neighborhood: "Tatuapé",
+    addressLocation: "Apto 305",
+    city: "São Paulo",
+    uf: "SP",
+    state: "São Paulo",
+    number: "123",
+    complement: "Prédio Sol Nascente"
+  }
+];
+

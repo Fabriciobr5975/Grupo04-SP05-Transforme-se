@@ -1,0 +1,22 @@
+export const ingredientCatalog = [
+  { ingredientId: 1, name: "Chocolate em pó", description: "Base intensa e aromática para receitas de chocolate." },
+  { ingredientId: 2, name: "Leite condensado", description: "Doce cremoso que dá textura e sabor ao brigadeiro." },
+  { ingredientId: 3, name: "Manteiga", description: "Aporte de cremosidade e sabor ao preparo." },
+  { ingredientId: 4, name: "Cacau", description: "Profundidade de sabor para doces de chocolate." },
+  { ingredientId: 5, name: "Coco ralado", description: "Textura leve e perfume tropical." },
+  { ingredientId: 6, name: "Leite de coco", description: "Essência cremosa típica de sobremesas brasileiras." },
+  { ingredientId: 7, name: "Morango", description: "Fruta fresca e ácida para composições doces." },
+  { ingredientId: 8, name: "Cream cheese", description: "Base cremosa para cheesecakes e coberturas." },
+  { ingredientId: 9, name: "Farinha de trigo", description: "Estrutura e maciez da massa." },
+  { ingredientId: 10, name: "Açúcar", description: "Doçura equilibrada para receitas doces." },
+  { ingredientId: 11, name: "Ovos", description: "Ligante e estrutura na massa." },
+  { ingredientId: 12, name: "Nozes", description: "Textura crocante e sabor marcante." },
+  { ingredientId: 13, name: "Tomate", description: "Elemento para recheios e nozes de sobremesa." },
+  { ingredientId: 14, name: "Limão", description: "Açúcar e acidez para tortas cítricas." },
+  { ingredientId: 15, name: "Baunilha", description: "Aroma suave e doce." },
+  { ingredientId: 16, name: "Creme de leite", description: "Cremosidade extra para recheios e coberturas." },
+  { ingredientId: 17, name: "Chocolate meio amargo", description: "Sabor sofisticado para receitas premium." },
+  { ingredientId: 18, name: "Pistache", description: "Sabor único e textura crocante." },
+  { ingredientId: 19, name: "Laranja", description: "Aroma cítrico para bolos e coberturas." },
+  { ingredientId: 20, name: "Farinha de coco", description: "Textura mais leve e sabor tropical." }
+];

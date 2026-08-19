@@ -2,6 +2,7 @@ import { setStyle } from "../../utils/PageUtil.js";
 
 export default function Header() {
   setStyle("/src/components/header/style.css");
+  const userLoggedIn = sessionStorage.getItem("loggedInUser") ? true : false;
 
   return (`
     <header class="header">
@@ -20,7 +21,7 @@ export default function Header() {
         <nav class="navbar">
           <ul class="navbar__list">
             <li class="navbar__list__item" data-route>
-              <a href="/">
+              <a href="/" data-route>
                 Início
                 <hr class="navbar__list__item--active" />
               </a>
@@ -59,7 +60,7 @@ export default function Header() {
             <span class="icon_section__btn--quantity">5</span>
           </a>
 
-          <a class="icon-section__btn" href="/auth/login" data-route>
+          <a class="icon-section__btn" href=${userLoggedIn ? "/profile" : "/auth/login"} data-route>
             <i class="fa-regular fa-user header__icon"></i>
           </a>
         </div>

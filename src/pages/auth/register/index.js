@@ -13,16 +13,18 @@ const RegisterPage = {
       <section class="auth-main__section">
         ${HeadingSection("Cadastro", "Insira suas informações")}
         
-        <form class="auth-main__form">
+        <form class="auth-main__form" method="post" autocomplete="off">
           <div class="auth-main__form-content">
-            ${Input("register-name", "Nome Completo", { type: "text", name: "username", placeholder: "Digite seu nome completo", required: true })}
+            ${Input("register-name", "Nome Completo", { type: "text", name: "username", placeholder: "Digite seu primeiro nome", required: true })}
+            ${Input("register-lastName", "Sobrenome", { type: "text", name: "lastname", placeholder: "Digite seu sobrenome completo", required: true })}
             ${Input("register-email", "E-mail", { type: "email", name: "email", placeholder: "Digite seu e-mail", required: true })}
-            ${Input("register-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha",required: true })}
-            ${Input("register-confirm-password", "Senha", { type: "password", name: "password", placeholder: "Confirme sua senha", required: true })}
+            ${Input("register-telephone", "Telefone", { type: "tel", name: "telephone", placeholder: "Digite seu e-mail", required: true })}
+            ${Input("register-password", "Senha", { type: "password", name: "password", placeholder: "Digite sua senha", required: true, autocomplete: "" })}
+            ${Input("register-confirm-password", "Senha", { type: "password", name: "password", placeholder: "Confirme sua senha", required: true, autocomplete: "" })}
           </div>
         
           <div>
-            ${Button({ type: "submit", innerText: "Cadastrar-se" })}        
+            ${Button({ type: "submit", innerText: "Cadastrar-se", id: "form-submit-register" })}        
           </div>
         </form>
 
@@ -34,7 +36,8 @@ const RegisterPage = {
     </main>
   </div>
   `,
-  styles: "/src/pages/auth/style.css"
+  styles: "/src/pages/auth/style.css",
+  scripts: "/src/pages/auth/register/RegisterService.js"
 }
 
 export default RegisterPage;
