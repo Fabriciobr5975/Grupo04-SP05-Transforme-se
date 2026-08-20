@@ -14,7 +14,7 @@ const template = `
           <h1 class="catalog-page__title">Nossos Produtos</h1>
           <hr />
           <p class="catalog-page__search-result">
-            6 resultados
+            ${products.length} produto(s)
           </p>
       </section>
       

@@ -1,58 +1,48 @@
 import ProductCard from "../../../components/product-card/index.js";
 
-const CATEGORIES = ["Todos", "Bolo", "Doce", "Cookie", "Torta", "Especiais"];
-
-// Enum
-const ORDERING_OPTIONS = [
-    "Relevância",
-    "Mais Vendidos",
-    "Mais Recentes",
-    "Produtos Mais Baratos",
-    "Produtos Mais Caros",
-    "Ordem Crescente (A - Z)",
-    "Ordem Decrescente (Z - A)",
-];
-
 export function productPagedService() {
     const itemsPerPage = 12;
     let currentPage = 1;
     let currentItems = [];
     let hasBoundListeners = false;
 
-    const renderPagination = (products = currentItems) => {
-        const pagesCount = Math.ceil(products.length / itemsPerPage) || 1;
+    const renderPagination = (productFilter = currentItems) => {
+        const pagesCount = Math.ceil(productFilter.length / itemsPerPage) || 1;
         const safeCurrentPage = Math.min(currentPage, pagesCount);
         currentPage = safeCurrentPage;
 
         const lastPageIndex = safeCurrentPage * itemsPerPage;
         const firstPageIndex = lastPageIndex - itemsPerPage;
-        const pagedItems = products.slice(firstPageIndex, lastPageIndex);
+        const pagedItems = productFilter.slice(firstPageIndex, lastPageIndex);
 
         const productsList = document.querySelector(".catalog-page__products-list");
         const prevButton = document.querySelector(".catalog-page__products-pagination__button--prev");
         const nextButton = document.querySelector(".catalog-page__products-pagination__button--next");
         const resultsInfo = document.querySelector(".catalog-page__products-pagination__info");
         const pageCurrent = document.querySelector(".catalog-page__products-pagination__page-current");
+        const productsResultInfo = document.querySelector(".catalog-page__search-result");
         const pageCount = document.querySelector(".catalog-page__products-pagination__page-count");
 
-        if (productsList) {
+        if(productsResultInfo) productsResultInfo.innerHTML = `${productFilter.length} produto(s)`;
+
+        if (productsList) 
             productsList.innerHTML = pagedItems
                 .map((product) => `<li class="catalog-page__products__item">${ProductCard(product)}</li>`).join("");
-        }
 
         if (resultsInfo) resultsInfo.innerHTML = `
                 Mostrando
-                <span class="catalog-page__products-pagination__info--strong">${Math.min(firstPageIndex + 1, products.length)}</span>
+                <span class="catalog-page__products-pagination__info--strong">${Math.min(firstPageIndex + 1, productFilter.length)}</span>
                 a
-                <span class="catalog-page__products-pagination__info--strong">${Math.min(lastPageIndex, products.length)}</span>
+                <span class="catalog-page__products-pagination__info--strong">${Math.min(lastPageIndex, productFilter.length)}</span>
                 de
-                <span class="catalog-page__products-pagination__info--strong">${products.length}</span> resultados
+                <span class="catalog-page__products-pagination__info--strong">${productFilter.length}</span> resultados
             `;
 
         if (pageCurrent) pageCurrent.textContent = String(safeCurrentPage);
         if (pageCount) pageCount.textContent = String(pagesCount);
         if (prevButton) prevButton.disabled = safeCurrentPage === 1;
         if (nextButton) nextButton.disabled = safeCurrentPage >= pagesCount;
+
     };
 
     const handleFilters = () => {
@@ -60,11 +50,10 @@ export function productPagedService() {
         const selectedOrderValue = document.querySelector('input[name="product-filter"]:checked').value;
         let result = [...currentItems];
 
-        if (selectedCategoryValue !== "Todos") {
+        if (selectedCategoryValue !== "Todos") 
             result = result.filter((p) => p.category === selectedCategoryValue);
-        }
 
-        return [...result].sort((a, b) => {
+        return result.toSorted((a, b) => {
             switch (selectedOrderValue) {
                 case "Mais Recentes":
                     return new Date(b.insertAt).getTime() - new Date(a.insertAt).getTime();
@@ -82,33 +71,32 @@ export function productPagedService() {
         });
     }
 
+    const getProductFilters = () => handleFilters();
+
     const bindPaginationListeners = () => {
         if (hasBoundListeners) return;
 
         document.addEventListener("click", (event) => {
             const prevButton = event.target.closest(".catalog-page__products-pagination__button--prev");
             const nextButton = event.target.closest(".catalog-page__products-pagination__button--next");
-
             const filterRadios = document.querySelectorAll(".catalog-page__filter-option-input");
+
             if (filterRadios) {
-                filterRadios.forEach(radio =>
-                    radio.addEventListener("change", () => {
-                        const newPagedItems = handleFilters();
-                        renderPagination(newPagedItems);
-                        return;
-                    }));
+                filterRadios.forEach(radio => radio.addEventListener("change", () => {
+                    renderPagination(getProductFilters());
+                }));
             }
 
             if (prevButton) {
                 currentPage = Math.max(currentPage - 1, 1);
-                renderPagination();
+                renderPagination(getProductFilters());
                 return;
             }
 
             if (nextButton) {
                 const pagesCount = Math.ceil(currentItems.length / itemsPerPage) || 1;
                 currentPage = Math.min(currentPage + 1, pagesCount);
-                renderPagination();
+                renderPagination(getProductFilters());
             }
         });
 

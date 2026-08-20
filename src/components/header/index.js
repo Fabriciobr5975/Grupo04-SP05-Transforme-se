@@ -57,7 +57,7 @@ export default function Header() {
           
           <a class="icon-section__btn" href="/cart" data-route>
             <i class="fa-solid fa-bag-shopping header__icon"></i>
-            <span class="icon_section__btn--quantity">5</span>
+            <!-- <span class="icon_section__btn--quantity">0</span> -->
           </a>
 
           <a class="icon-section__btn" href=${userLoggedIn ? "/profile" : "/auth/login"} data-route>

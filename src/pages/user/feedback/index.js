@@ -1,4 +1,5 @@
 import BaseLayout from "../../../layouts/index.js";
+import Button from "../../../components/button/index.js";
 
 const template = `
    <div class="feedback-page">
@@ -34,10 +35,10 @@ const template = `
                 <h2 class="feedback-page__section-question">Como você avalia sua experiência?</h2>
               </div>
               <div class="feedback-page__stars"> 
-                ${Array.from({ length: 5}).map((_, i) => 
-                `<button type="button" class="feedback-page__star-button">
-                   <i id="feedback-page__star-${i + 1}" class="fa-regular fa-star feedback-page__star-icon"></i>
-                 </button>
+                ${Array.from({ length: 5 }).map((_, i) =>
+                  `<button type="button" class="feedback-page__star-button">
+                     <i id="feedback-page__star-${i + 1}" class="fa-regular fa-star feedback-page__star-icon"></i>
+                   </button>
                 `).join("")}
               </div> 
            </section>
@@ -55,6 +56,10 @@ const template = `
                 <p class="feedback-page__text-area-length">0/500</p>
               </div> 
            </section>
+           <div class="feedback-page__buttons">
+            ${Button({ id: "feedback-page__insert-button", type: "button", innerText: "Inserir Avaliação" })}
+            ${Button({ id: "feedback-page__remove-button", type: "button", innerText: "Remover Avaliação", disabled: true })}
+           </div>
          </section>
        </div>
      </div> 
@@ -62,7 +67,8 @@ const template = `
 
 const FeedbackPage = {
   template: BaseLayout(template),
-  styles: "/src/pages/feedback/style.css"
+  styles: "/src/pages/user/feedback/style.css",
+  scripts: "/src/pages/user/feedback/FeedbackService.js"
 };
 
 export default FeedbackPage;

@@ -27,7 +27,7 @@ const locationHandler = async () => {
   // pega pathname ou rota salva
   window.scrollTo(0, 0);
   const path = window.location.pathname || "/";
-  const route =  Routes["/catalog"] || Routes["/notfound"];
+  const route =  Routes["/profile/feedback"] || Routes["/notfound"];
 
   if (!route) {
     root.innerHTML = "<p>Página não encontrada.</p>";

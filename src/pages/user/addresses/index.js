@@ -131,10 +131,8 @@ async function registerUserAddress(event) {
 
   try {
     const cepValue = cepInput.value.replace(/\D/g, "");
-    const existAdress = userAddresses.some(a => a.cep === address.cep);
-
     const address = await getAddressFromViaCep(cepValue);
-
+    
     if (address.erro) {
       alert("CEP inválido");
       return;

@@ -78,6 +78,6 @@ export const ApplicationRoutes = Object.freeze([
   },
   {
     path: "/profile/feedback",
-    component: () => import("../pages/feedback/index.js"),
+    component: () => import("../pages/user/feedback/index.js"),
   },
 ]);
