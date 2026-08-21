@@ -2,6 +2,7 @@ import { reviews } from "../../../seeds/reviews.js";
 import { users } from "../../../seeds/users.js";
 
 export function useProductDetail() {
+    const user = sessionStorage.getItem("loggedInUser");
     const product = JSON.parse(sessionStorage.getItem("productSelected")) || null;
 
     const reviewsByUser = product
@@ -72,8 +73,65 @@ export function useProductDetail() {
         updateQuantityDisplay();
     }
 
+    function handleInsertionProductCart(event, product, quantity) {
+        event.preventDefault();
+
+        if (!user) {
+            alert("Para ter acesso ao carrinho, você precisa estar logado!");
+            window.navigateTo("/auth/login");
+            return;
+        }
+
+        try {
+            const savedProducts = sessionStorage.getItem("userCart");
+            const current = savedProducts ? JSON.parse(savedProducts) : [];
+
+            const already = current.some((p) => p.productId === product.productId);
+
+            if (already) {
+                window.navigateTo("/cart");
+                return;
+            }
+
+            const productBody = {
+                productId: product.productId,
+                name: product.name,
+                category: product.category,
+                productQuantity: product.productQuantity,
+                unitPrice: product.price,
+                freight: Math.floor(Math.random() * (40 - 10) + 10),
+                image: product.images[0]
+            }
+
+            // Normaliza o item adicionado incluindo quantidade
+            const toAdd = { ...productBody, quantity: quantity };
+            current.push(toAdd);
+            sessionStorage.setItem("userCart", JSON.stringify(current));
+            alert("Produto adicionado ao carrinho");
+            window.navigateTo("/cart");
+        } catch {
+            alert("Não foi possível adicionar o produto ao carrinho. Tente novamente.");
+        }
+    }
+
     document.addEventListener("click", handleProductQuantityIncrease);
     document.addEventListener("click", handleProductQuantityDecrease);
 
-    return { product, reviewsByUser, productQuantity };
+    function handleInsertCartClick(event) {
+        const button = event.target.closest("#product-detail--add-cart");
+        if (!button || !product) return;
+
+        handleInsertionProductCart(event, product, productQuantity);
+    };
+
+    document.addEventListener("click", handleInsertCartClick);
+
+    function cleanup() {
+        document.removeEventListener("click", handleImageThumbnailClick);
+        document.removeEventListener("click", handleProductQuantityIncrease);
+        document.removeEventListener("click", handleProductQuantityDecrease);
+        document.removeEventListener("click", handleInsertCartClick);
+    }
+
+    return { product, reviewsByUser, productQuantity, cleanup };
 }

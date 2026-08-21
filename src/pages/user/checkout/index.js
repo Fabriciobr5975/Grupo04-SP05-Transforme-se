@@ -1,4 +1,12 @@
 import BaseLayout from "../../../layouts/index.js";
+import { useCheckout } from "./CheckoutService.js";
+
+const {
+  user,
+  userCart,
+  totalPriceCart,
+  totalFreightPriceCart,
+} = useCheckout();
 
 const template = `
   <div class="checkout-page">
@@ -20,56 +28,89 @@ const template = `
           <h2 class="checkout-page__section-title">1. Revisão dos Itens</h2>
 
           <div class="checkout-page__review-list">
+            ${Array.isArray(userCart) && userCart.length > 0 ? userCart.map(product => `
             <article class="checkout-page__review-item">
               <img 
                 class="checkout-page__review-image" 
-                src="src/assets/images/bolo-homepage.png" 
-                alt="Imagem do Produto" 
+                src="${product.image}" 
+                alt="Imagem do produto ${product.name}"
               />
 
               <div class="checkout-page__review-info">
-                <p class="checkout-page__review-name">Petit Gateu</p>
+                <p class="checkout-page__review-name">${product.name}</p>
 
                 <div class="checkout-page__quantity-input">
-                  <button type="button" class="checkout-page__quantity-button">-</button>
-                  <span class="checkout-page__quantity-value">1</span>
-                  <button type="button" class="checkout-page__quantity-button">+</button>
+                  <button 
+                    type="button" 
+                    id="decrease-quantity-${product.productId}"
+                    data-product-id="${product.productId}" 
+                    class="checkout-page__quantity-button decrease-quantity"
+                  >
+                   -
+                  </button>
+                  <span 
+                    id="checkout-product__quantity-${product.productId}" 
+                    class="checkout-page__quantity-value"
+                  >
+                    ${product.quantity}
+                  </span>
+                  <button 
+                    type="button" 
+                    id="increase-quantity-${product.productId}"
+                    data-product-id="${product.productId}"
+                    class="checkout-page__quantity-button increase-quantity"
+                  >
+                    +
+                  </button>
                 </div>
-
                 <div class="checkout-page__summary-row">
                   <span>Frete:</span>
-                  <strong>Grátis</strong>
+                  <strong class=${product.freight === 0 ? "checkout__item-freight--free" : "checkout__item-freight--paid"}> ${product.freight === 0 ? "Grátis" : `R$ ${product.freight.toFixed(2).replace(".", ",")}`}</strong>
                 </div>
               </div>
 
               <div class="checkout-page__review-extra-info">
-                <button type="button" class="checkout-page__button--remove">
+                <button  
+                  id="remove-product-${product.productId}" 
+                  data-product-id="${product.productId}"
+                  type="button" 
+                  class="checkout-page__button--remove"
+                >
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
 
                 <div class="checkout-page__review-price">
-                  <strong>R$ 59,90</strong>
+                  <strong>R$ ${product.unitPrice.toFixed(2).replace(".", ",")}</strong>
                 </div>
               </div>
             </article>
+            `).join("") : '<p class="checkout-page__info-cart--empty">Você não tem produtos para finalizar a compra</p>'}
           </div>
 
           <div class="checkout-page__summary-row--total">
             <span>Subtotal:</span>
-            <strong>R$ 59,90</strong>
+            <strong>R$ ${(totalPriceCart + totalFreightPriceCart).toFixed(2).replace(".", ",")}</strong>
+            <p class="checkout-page__prices-info">Produtos: ${totalPriceCart.toFixed(2).replace(".", ",")}</p>
+            <p class="checkout-page__prices-info">Frete: ${totalFreightPriceCart.toFixed(2).replace(".", ",")}</p>
           </div>
         </section>
 
         <section class="checkout-page__section checkout-page__section--address">
           <h2 class="checkout-page__section-title">2. Endereço de Entrega</h2>
 
+          ${Array.isArray(user.addresses) && user.addresses.length > 0 ? user.addresses.map((address) => `
           <div class="checkout-page__address-card">
-            <p class="checkout-page__address-title">Rua das Flores, 123</p>
-            <p class="checkout-page__address-text">São Paulo · SP</p>
-            <p class="checkout-page__address-text">CEP 01000-000</p>
-            <p class="checkout-page__address-text">Complemento: Portaria 2</p>
-            <button class="checkout-page__button" type="button">Alterar Endereço</button>
+            <p class="checkout-page__address-title">${address.address}, ${address.number}</p>
+            <p class="checkout-page__address-text">${address.city} · ${address.state}</p>
+            <p class="checkout-page__address-text">CEP ${address.cep}</p>
+            <p class="checkout-page__address-text">Complemento: ${address.complement}</p>
+            <div class="checkout-page__buttons">
+              <button class="checkout-page__button" type="button">Selecionar Endereço</button>
+              <button class="checkout-page__button" type="button">Alterar Endereço</button>
+            </div>
           </div>
+          `).join("") : ""}
+           <button class="checkout-page__button" type="button">Inserir Novo Endereço</button>
         </section>
 
         <section class="checkout-page__section checkout-page__section--payment">
@@ -106,14 +147,14 @@ const template = `
           </div>
         </section>
       </div>
-    
     </section>
   </div>
 `;
 
 const CheckoutPage = {
   template: BaseLayout(template),
-  styles: "/src/pages/user/checkout/style.css"
+  styles: "/src/pages/user/checkout/style.css",
+  scripts: "src/pages/user/checkout/CheckoutService.js"
 };
 
 export default CheckoutPage;

@@ -2,9 +2,10 @@ import BaseLayout from "../../layouts/index.js";
 import Input from "../../components/input/index.js";
 import { useProductDetail } from "./ProductDetailService.js";
 
-const { product, reviewsByUser, productQuantity } = useProductDetail();
+export default function ProductDetailPage() {
+  const { product, reviewsByUser, productQuantity, cleanup } = useProductDetail();
 
-const template = `
+  const template = `
   <section class="product-detail-page">
     <div class="product-detail-page__topbar">
       <button type="button" class="product-detail-page__back-button" onclick="window.history.back()">
@@ -87,7 +88,7 @@ const template = `
                   <i class="fa-solid fa-cart-plus"></i>
                   Comprar
                 </a>
-                <a href="/cart" class="product-detail-page__button" data-route>
+                <a href="/cart" id="product-detail--add-cart" class="product-detail-page__button" data-route>
                   <i class="fa-solid fa-basket-shopping"></i>
                   Adicionar ao carrinho
                 </a>
@@ -144,9 +145,9 @@ const template = `
   </section>
 `;
 
-const ProductDetailPage = {
-  template: BaseLayout(template),
-  styles: "/src/pages/product-detail/style.css"
-};
-
-export default ProductDetailPage;
+  return {
+    template: BaseLayout(template),
+    styles: "/src/pages/product-detail/style.css",
+    cleanup,
+  };
+}

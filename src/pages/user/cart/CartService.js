@@ -1,54 +1,114 @@
 "use strict";
-import { carts } from "../../../../seeds/carts.js";
-import { calculateTotalProductPrice, calculateTotalFreightPrice, calculeQuantityOfProducts } from "../../../services/CartService.js";
+import {
+  cartUpdate,
+  cartDelete,
+  calculateTotalProductPrice,
+  calculateTotalFreightPrice,
+  calculeQuantityOfProducts
+} from "../../../services/CartService.js";
 
 export function useCart() {
-    const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
-    const userCart = carts.filter(cart => cart.user.userId === user.userId)[0] ?? {};
-    const productsCart = userCart.products;
+  const userCart = JSON.parse(sessionStorage.getItem("userCart")) ?? [];
+  let totalPriceCart = calculateTotalProductPrice(userCart);
+  let totalFreightPriceCart = calculateTotalFreightPrice(userCart);
+  let quantityOfProducts = calculeQuantityOfProducts(userCart);
 
-    let totalPriceCart = calculateTotalProductPrice(productsCart);
-    let totalFreightPriceCart = calculateTotalFreightPrice(productsCart);
-    let quantityOfProducts = calculeQuantityOfProducts(productsCart);
+  const removeProductFromCart = (productId) => {
+    const numericId = Number(productId);
+    if (!Number.isInteger(numericId)) return;
 
-    const removeProductFromCart = (productId) => {
-        const numericId = Number(productId);
-        if (!Number.isInteger(numericId)) return;
+    const productRemoved = userCart.find((p) => p.productId === numericId);
+    const newProducts = userCart.filter((product) => product !== productRemoved);
 
-        const newProducts = productsCart.filter((product) => product.productId !== numericId);
+    userCart.splice(0, userCart.length, ...newProducts);
 
-        productsCart.splice(0, productsCart.length, ...newProducts);
+    totalPriceCart = calculateTotalProductPrice(userCart);
+    totalFreightPriceCart = calculateTotalFreightPrice(userCart);
 
-        totalPriceCart = calculateTotalProductPrice(productsCart);
-        totalFreightPriceCart = calculateTotalFreightPrice(productsCart);
+    const itemsContainer = document.querySelector(".cart-page__items");
+    if (!itemsContainer) return;
 
-        const itemsContainer = document.querySelector(".cart-page__items");
-        if (!itemsContainer) return;
+    itemsContainer.innerHTML = newProducts.length > 0
+      ? newProducts.map(renderCartItem).join("")
+      : cartEmptyHTML();
 
-        itemsContainer.innerHTML = newProducts.length > 0
-            ? newProducts.map(renderCartItem).join("")
-            : cartEmptyHTML();
+    handleProductQuantity(newProducts);
+    cartDelete(productRemoved);
+  };
 
-        handleProductQuantity(newProducts); 
-    };
+  const clearCart = () => {
+    const itemsContainer = document.querySelector(".cart-page__items");
+    if (!itemsContainer) return;
+    userCart.slice(0, userCart.length);
+    itemsContainer.innerHTML = cartEmptyHTML();
+    renderNewPrices(0, 0, 0);
+    sessionStorage.removeItem("userCart");
+  }
 
-    const clearCart = () => {
-        const itemsContainer = document.querySelector(".cart-page__items");
-        if (!itemsContainer) return;
-        productsCart.slice(0, productsCart.length);
-        itemsContainer.innerHTML = cartEmptyHTML();
-        renderNewPrices(0, 0, 0);
-    }
+  const handleProductQuantity = (products) => {
+    renderNewPrices(calculeQuantityOfProducts(products), calculateTotalProductPrice(products), totalFreightPriceCart);
+  }
 
-    const handleProductQuantity = (products) => {
-        renderNewPrices(calculeQuantityOfProducts(products), calculateTotalProductPrice(products), totalFreightPriceCart);
-    }
+  function updateQuantityDisplay(productId, newValue) {
+    const quantity = document.querySelector(`#product-card__quantity-${productId}`);
+    if (!quantity) return;
+    quantity.textContent = newValue;
+  }
 
-    return { userCart, productsCart, totalPriceCart, totalFreightPriceCart, quantityOfProducts, removeProductFromCart, clearCart, handleProductQuantity };
+  function updateProductQuantity(productId, change) {
+    if (!Array.isArray(userCart)) return;
+
+    const productIndex = userCart.findIndex((product) => product.productId === Number(productId));
+    if (productIndex === -1) return;
+
+    const product = userCart[productIndex];
+    const nextQuantity = Math.min(99, Math.max(1, product.quantity + change));
+
+    product.quantity = nextQuantity;
+    updateQuantityDisplay(product.productId, nextQuantity);
+    handleProductQuantity(userCart);
+    cartUpdate(product);
+  }
+
+  function handleCartClear(event) {
+    clearCart();
+  }
+
+  function handleProductQuantityIncrease(event) {
+    const button = event.currentTarget;
+    const productId = button.dataset.productId;
+    updateProductQuantity(productId, 1);
+  }
+
+  function handleProductQuantityDecrease(event) {
+    const button = event.currentTarget;
+    const productId = button.dataset.productId;
+    updateProductQuantity(productId, -1);
+  }
+
+  function handleProductRemove(event) {
+    const button = event.currentTarget;
+    const productId = button.dataset.productId;
+    removeProductFromCart(productId);
+  }
+
+  document.addEventListener("click", () => {
+    const clearCartButton = document.querySelector("#clear-cart");
+    const increaseButtons = document.querySelectorAll(".increase-quantity");
+    const decreaseButtons = document.querySelectorAll(".decrease-quantity");
+    const removeProductButton = document.querySelectorAll(".remove-product");
+
+    clearCartButton.addEventListener("click", handleCartClear)
+    increaseButtons.forEach((button) => button.addEventListener("click", handleProductQuantityIncrease));
+    decreaseButtons.forEach((button) => button.addEventListener("click", handleProductQuantityDecrease));
+    removeProductButton.forEach((button) => button.addEventListener("click", handleProductRemove));
+  });
+
+  return { userCart, totalPriceCart, totalFreightPriceCart, quantityOfProducts };
 }
 
 function renderCartItem(product) {
-    return `
+  return `
           <article class="cart-page__item">
             <div class="cart-page__item-image">
               <img 
@@ -115,14 +175,14 @@ function renderCartItem(product) {
 }
 
 function renderNewPrices(productsQuantity, totalPrice, totalFreightPrice) {
-    const cartQuantityItems = document.querySelector("#quantity-of-items");
-    const checkoutCartItems = document.querySelector(".cart-page__summary");
+  const cartQuantityItems = document.querySelector("#quantity-of-items");
+  const checkoutCartItems = document.querySelector(".cart-page__summary");
 
-    if (!cartQuantityItems || !checkoutCartItems) return;
+  if (!cartQuantityItems || !checkoutCartItems) return;
 
-    cartQuantityItems.textContent = String(productsQuantity).concat(" ", productsQuantity > 1 ? "item" : "itens");
+  cartQuantityItems.textContent = String(productsQuantity).concat(" ", productsQuantity > 1 ? "item" : "itens");
 
-    checkoutCartItems.innerHTML = `
+  checkoutCartItems.innerHTML = `
         <h3>Resumo da compra</h3>
 
           <div class="cart-page__summary-row">
@@ -147,7 +207,7 @@ function renderNewPrices(productsQuantity, totalPrice, totalFreightPrice) {
 }
 
 export function cartEmptyHTML() {
-    return (`
+  return (`
       <section class="cart cart__section">
         <i class="fa-solid fa-box-open cart__icon"></i>
         <div class="cart__content">

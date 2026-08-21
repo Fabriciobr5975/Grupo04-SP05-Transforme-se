@@ -1,25 +1,25 @@
 export async function cartUpdate(product) {
     try {
-        const saveProducts = localStorage.getItem("produtosCarrinho");
+        const saveProducts = sessionStorage.getItem("userCart");
         const current = saveProducts ? JSON.parse(saveProducts) : [];
 
         let found = false;
         const updated = current.map((p) => {
             if (p.productId === product.productId) {
                 found = true;
-                return { ...p, productCartQuantity: product.productCartQuantity };
+                return { ...p, quantity: product.quantity };
             }
             return p;
         });
 
         if (!found) {
-            notifySuccess("Produto não encontrado no carrinho local.");
+            alert("Produto não encontrado no carrinho local.");
         }
 
         if (updated.length === 0) {
-            localStorage.removeItem("produtosCarrinho");
+            sessionStorage.removeItem("userCart");
         } else {
-            localStorage.setItem("produtosCarrinho", JSON.stringify(updated));
+            sessionStorage.setItem("userCart", JSON.stringify(updated));
         }
 
     } catch (err) {
@@ -30,20 +30,20 @@ export async function cartUpdate(product) {
 
 export async function cartDelete(product) {
     try {
-        const saveProducts = localStorage.getItem("produtosCarrinho");
+        const saveProducts = sessionStorage.getItem("userCart");
         const current = saveProducts ? JSON.parse(saveProducts) : [];
 
         const newResult = current.filter((p) => p.productId !== product.productId);
 
         if (newResult.length === current.length) {
-            notifySuccess("Produto não encontrado no carrinho local.");
+            alert("Produto não encontrado no carrinho local.");
             return;
         }
 
         if (newResult.length === 0) {
-            localStorage.removeItem("produtosCarrinho");
+            sessionStorage.removeItem("userCart");
         } else {
-            localStorage.setItem("produtosCarrinho", JSON.stringify(newResult));
+            sessionStorage.setItem("userCart", JSON.stringify(newResult));
         }
     } catch {
         alert("Não foi possível remover o produto do carrinho local. Tente novamente.");

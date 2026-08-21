@@ -12,7 +12,7 @@ const cartProduct = (productId, quantity) => {
     productId: product.productId,
     name: product.name,
     category: product.category,
-    quantity,
+    productQuantity: product.productQuantity,
     unitPrice: product.price,
     freight: Math.floor(Math.random() * (40 - 10) + 10),
     image: product.images[0]

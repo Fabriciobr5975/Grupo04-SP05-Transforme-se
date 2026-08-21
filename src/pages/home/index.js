@@ -110,8 +110,8 @@ const template = `
 
             <div class="home-page__reviews__author">
               <img
-                src="src/assets/images/avatar/avatar1.svg"
-                alt="Foto da cliente Ana Martins"
+                src="src/assets/images/avatar/avatar2.svg"
+                alt="Foto do cliente Ricardo Rodrigues"
                 class="home-page__reviews__author-img"
               />
               <div>
@@ -135,7 +135,7 @@ const template = `
             <div class="home-page__reviews__author">
               <img
                 src="src/assets/images/avatar/avatar3.svg"
-                alt="Foto da cliente Ana Martins"
+                alt="Foto da cliente Juliana Moreira"
                 class="home-page__reviews__author-img"
               />
               <div>

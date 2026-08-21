@@ -3,13 +3,9 @@ import { cartEmptyHTML, useCart } from "./CartService.js";
 
 const {
   userCart,
-  productsCart,
   totalPriceCart,
   totalFreightPriceCart,
   quantityOfProducts,
-  removeProductFromCart,
-  clearCart,
-  handleProductQuantity
 } = useCart();
 
 const template = `
@@ -35,7 +31,7 @@ const template = `
 
       <section class="cart-page__content">
         <div class="cart-page__items">
-          ${Array.isArray(productsCart) && productsCart.length > 0 ? productsCart.map(product => `
+          ${Array.isArray(userCart) && userCart.length > 0 ? userCart.map(product => `
           <article class="cart-page__item">
             <div class="cart-page__item-image">
               <img 
@@ -93,7 +89,7 @@ const template = `
                 <strong 
                   class="${product.freight === 0 ? "cart-page__item-freight--free" : "cart-page__item-freight--paid"}"
                 >
-                  ${product.freight === 0 ? product.freight : `R$ ${product.freight.toFixed(2).replace(".", ",")}`}
+                  ${product.freight === 0 ? "Grátis" : `R$ ${product.freight.toFixed(2).replace(".", ",")}`}
                 </strong>
               </p>
             </div>
@@ -133,59 +129,5 @@ const UserCartPage = {
   styles: "/src/pages/user/cart/style.css",
   scripts: "/src/pages/user/cart/CartService.js"
 };
-
-function updateQuantityDisplay(productId, newValue) {
-  const quantity = document.querySelector(`#product-card__quantity-${productId}`);
-  if (!quantity) return;
-  quantity.textContent = newValue;
-}
-
-function updateProductQuantity(productId, change) {
-  if (!Array.isArray(productsCart)) return;
-
-  const productIndex = productsCart.findIndex((product) => product.productId === Number(productId));
-  if (productIndex === -1) return;
-
-  const product = productsCart[productIndex];
-  const nextQuantity = Math.min(99, Math.max(1, product.quantity + change));
-
-  product.quantity = nextQuantity;
-  updateQuantityDisplay(product.productId, nextQuantity);
-  handleProductQuantity(productsCart);
-}
-
-function handleCartClear(event) {
-  clearCart();
-}
-
-function handleProductQuantityIncrease(event) {
-  const button = event.currentTarget;
-  const productId = button.dataset.productId;
-  updateProductQuantity(productId, 1);
-}
-
-function handleProductQuantityDecrease(event) {
-  const button = event.currentTarget;
-  const productId = button.dataset.productId;
-  updateProductQuantity(productId, -1);
-}
-
-function handleProductRemove(event) {
-  const button = event.currentTarget;
-  const productId = button.dataset.productId;
-  removeProductFromCart(productId);
-}
-
-document.addEventListener("click", () => {
-  const clearCartButton = document.querySelector("#clear-cart");
-  const increaseButtons = document.querySelectorAll(".increase-quantity");
-  const decreaseButtons = document.querySelectorAll(".decrease-quantity");
-  const removeProductButton = document.querySelectorAll(".remove-product");
-
-  clearCartButton.addEventListener("click", handleCartClear)
-  increaseButtons.forEach((button) => button.addEventListener("click", handleProductQuantityIncrease));
-  decreaseButtons.forEach((button) => button.addEventListener("click", handleProductQuantityDecrease));
-  removeProductButton.forEach((button) => button.addEventListener("click", handleProductRemove));
-});
 
 export default UserCartPage;
