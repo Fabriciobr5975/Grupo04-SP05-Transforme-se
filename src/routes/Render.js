@@ -5,12 +5,34 @@ export default class Render {
     this.currentStyle = null;
   }
 
-  render(page, stylePath, scriptPath) {
+  async render(page, stylePath, scriptPath) {
+    await this.transitionOut();
+
     this.root.innerHTML = page;
     this.setStyle(stylePath);
     if (scriptPath) {
       this.setScript(scriptPath);
     }
+
+    this.root.classList.remove("page-transition--out");
+    this.root.classList.add("page-transition--in");
+  }
+
+  transitionOut() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return Promise.resolve();
+    }
+
+    if (this.root.classList.contains("page-transition--out")) {
+      return Promise.resolve();
+    }
+
+    this.root.classList.remove("page-transition--in");
+    this.root.classList.add("page-transition--out");
+
+    return new Promise((resolve) => {
+      this.root.addEventListener("animationend", resolve, { once: true });
+    });
   }
 
   setStyle(stylePath) {
