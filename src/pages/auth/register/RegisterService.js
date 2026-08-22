@@ -1,5 +1,7 @@
 "use strict";
 
+import { users } from "../../../../seeds/users.js";
+
 function registerUser(event) {
     event.preventDefault();
 
@@ -40,13 +42,39 @@ function registerUser(event) {
         return;
     }
 
-    if (passwordInput !== confirmPasswordInput) {
+    if (passwordInput.value.trim() !== confirmPasswordInput.value.trim()) {
         alert("As senhas precisam ser iguais para confirmar");
         return;
     }
 
+    const user = {
+        userId: getNextUserId(),
+        firstName: userNameInput.value.trim(),
+        lastName: userlastNameInput.value.trim(),
+        email: userNameInput.value.trim(),
+        password: emailInput.value.trim(),
+        phoneNumber: telephoneInput.value.trim(),
+        cpf: "",
+        accountCreateAt: new Date().toString(),
+        addresses: [],
+        reviews: []
+    };
+
+    sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+
     alert("Cadastro realizado com sucesso!");
-    window.navigateTo("/auth/opcional/address");
+    window.navigateTo("/auth/confirm");
+}
+
+function getNextUserId() {
+    if (!Array.isArray(users) || users.length === 0) return 1;
+
+    const lastUserId = users.reduce((highestId, user) => {
+        const userId = Number(user.userId) || 0;
+        return Math.max(highestId, userId);
+    }, 0);
+
+    return lastUserId + 1;
 }
 
 function initUserAddressForm() {

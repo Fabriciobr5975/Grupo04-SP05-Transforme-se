@@ -1,11 +1,16 @@
 import BaseLayout from "../../../layouts/index.js";
+import { AddressInsertionModal } from "../addresses/modals/AddressInsertionModal.js";
 import { useCheckout } from "./CheckoutService.js";
+import { getAddressFromViaCep } from "../../../services/AddressService.js";
 
 const {
   user,
   userCart,
   totalPriceCart,
   totalFreightPriceCart,
+  handleAddressInsertion,
+  selectAddress,
+  createOrder
 } = useCheckout();
 
 const template = `
@@ -99,18 +104,25 @@ const template = `
           <h2 class="checkout-page__section-title">2. Endereço de Entrega</h2>
 
           ${Array.isArray(user.addresses) && user.addresses.length > 0 ? user.addresses.map((address) => `
-          <div class="checkout-page__address-card">
+          <div class="checkout-page__address-card" data-address-id="${address.addressId}">
             <p class="checkout-page__address-title">${address.address}, ${address.number}</p>
             <p class="checkout-page__address-text">${address.city} · ${address.state}</p>
             <p class="checkout-page__address-text">CEP ${address.cep}</p>
             <p class="checkout-page__address-text">Complemento: ${address.complement}</p>
             <div class="checkout-page__buttons">
-              <button class="checkout-page__button" type="button">Selecionar Endereço</button>
+              <button 
+                type="button"
+                id="checkout-page__button--select-address-${address.addressId}" 
+                data-address-id="${address.addressId}"
+                class="checkout-page__button select-button--address" 
+              >
+                Selecionar Endereço
+              </button>
               <button class="checkout-page__button" type="button">Alterar Endereço</button>
             </div>
           </div>
           `).join("") : ""}
-           <button class="checkout-page__button" type="button">Inserir Novo Endereço</button>
+           <button id="add-address-btn" class="checkout-page__button" type="button">Inserir Novo Endereço</button>
         </section>
 
         <section class="checkout-page__section checkout-page__section--payment">
@@ -143,12 +155,14 @@ const template = `
               </label>
             </div>
             <p class="checkout-page__payment-text">Pagamento aprovado em até 10 minutos.</p>
-            <button class="checkout-page__button" type="button">Finalizar Pedido</button>
+            <button id="finish-order-button" class="checkout-page__button" type="button">Finalizar Pedido</button>
           </div>
         </section>
       </div>
     </section>
   </div>
+
+  ${AddressInsertionModal()}
 `;
 
 const CheckoutPage = {
@@ -156,5 +170,163 @@ const CheckoutPage = {
   styles: "/src/pages/user/checkout/style.css",
   scripts: "src/pages/user/checkout/CheckoutService.js"
 };
+
+function handleModalOpen() {
+  const modal = document.querySelector("#addressModal");
+  if (!modal) return;
+  modal.classList.add("modal--open");
+}
+
+function handleModalClose() {
+  const modal = document.querySelector("#addressModal");
+  if (!modal) return;
+  modal.classList.remove("modal--open");
+  document.querySelector(".modal__form").reset();
+}
+
+async function handleCepChange(event) {
+  const cepInput = event.target;
+  const cepValue = cepInput.value.replace(/\D/g, "");
+  const addressSummary = document.querySelector("#addressSummary");
+  const addressSummaryText = document.querySelector("#addressSummaryText");
+
+  if (cepValue.length < 8) return;
+
+  try {
+    const address = await getAddressFromViaCep(cepValue);
+
+    if (address.erro) {
+      alert("CEP não encontrado");
+      return;
+    }
+
+    const addressText = `${address.logradouro}, ${address.bairro}, ${address.localidade} - ${address.uf}`;
+    addressSummaryText.textContent = addressText;
+    addressSummary.hidden = false;
+  } catch (error) {
+    console.error("Erro ao buscar CEP:", error);
+    alert("Erro ao buscar o CEP");
+  }
+}
+
+async function registerUserAddress(event) {
+  event.preventDefault();
+
+  if (user.addresses.length === 3) {
+    alert("Você só pode adicionar 3 endereços!")
+    return;
+  }
+
+  const cepInput = document.getElementById("cep");
+  const numberAddressInput = document.getElementById("addressNumber");
+  const registerComplementInput = document.getElementById("addressComplement");
+
+  if (!cepInput || !cepInput.value.trim()) {
+    alert("O CEP é obrigatório");
+    return;
+  }
+
+  if (!numberAddressInput || !numberAddressInput.value) {
+    alert("Digite o número do seu endereço");
+    return;
+  }
+
+  if (!registerComplementInput || !registerComplementInput.value.trim()) {
+    alert("Digite um complemento para seu endereço");
+    return;
+  }
+
+  try {
+    const cepValue = cepInput.value.replace(/\D/g, "");
+    const address = await getAddressFromViaCep(cepValue);
+
+    if (address.erro) {
+      alert("CEP inválido");
+      return;
+    }
+
+    const newAddress = {
+      cep: address.cep,
+      address: address.logradouro,
+      number: numberAddressInput.value,
+      complement: registerComplementInput.value,
+      neighborhood: address.bairro,
+      city: address.localidade,
+      state: address.uf
+    };
+
+    handleAddressInsertion(newAddress);
+
+    handleModalClose();
+  } catch (error) {
+    console.error("Erro ao registrar endereço:", error);
+    alert("Erro ao registrar o endereço");
+  }
+}
+
+function handleSelectedAddress(event) {
+  const button = event.currentTarget;
+  const addressId = button.dataset.addressId;
+  selectAddress(addressId);
+}
+
+function handleFinishOrder() {
+  if (createOrder()) window.navigateTo("/checkout/confirm");
+}
+
+function handleCheckoutClick(event) {
+  if (event.target.closest("#finish-order-button")) {
+    handleFinishOrder();
+  }
+}
+
+function initUserAddressForm() {
+  const addButton = document.querySelector("#add-address-btn");
+  const form = document.querySelector(".modal__form");
+  const closeButton = document.querySelector("#closeAddressModal");
+  const backdrop = document.querySelector(".modal__backdrop");
+  const cepInput = document.querySelector("#cep");
+  const selectButtonAddress = document.querySelectorAll(".select-button--address");
+
+  if (!form) return;
+
+  // Abrir modal
+  if (addButton) {
+    addButton.removeEventListener("click", handleModalOpen);
+    addButton.addEventListener("click", handleModalOpen);
+  }
+
+  // Fechar modal
+  if (closeButton) {
+    closeButton.removeEventListener("click", handleModalClose);
+    closeButton.addEventListener("click", handleModalClose);
+  }
+
+  // Fechar ao clicar no backdrop
+  if (backdrop) {
+    backdrop.removeEventListener("click", handleModalClose);
+    backdrop.addEventListener("click", handleModalClose);
+  }
+
+  // Buscar CEP quando mudar
+  if (cepInput) {
+    cepInput.removeEventListener("change", handleCepChange);
+    cepInput.addEventListener("change", handleCepChange);
+  }
+
+  if (selectButtonAddress) {
+    selectButtonAddress.forEach((button) => {
+      button.removeEventListener("click", handleSelectedAddress);
+      button.addEventListener("click", handleSelectedAddress);
+    });
+  }
+
+  // Submit do formulário
+  form.removeEventListener("submit", registerUserAddress);
+  form.addEventListener("submit", registerUserAddress);
+}
+
+document.addEventListener("click", initUserAddressForm);
+document.addEventListener("click", handleCheckoutClick);
 
 export default CheckoutPage;

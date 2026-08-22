@@ -1,10 +1,14 @@
+const orders = JSON.parse(sessionStorage.getItem("orders")) ?? [];
+
+if(orders.length === 0) window.navigateTo("/");
+
 const template = `
   <section class="confirm-checkout-page">
     <div class="confirm-checkout__main">  
       <div class="confirm-checkout__header">
         <img src="/src/assets/images/image-checkout.png" alt="Logo" class="confirm-checkout__image-logo" />
         <h1 class="confirm-checkout__title">Pedido Realizado com Sucesso</h1>
-        <p class="confirm-checkout__title-complement">Pedido N<sup>º</sup><strong>#10001</strong></p>
+        <p class="confirm-checkout__title-complement">Pedido N<sup>º</sup><strong>#${orders[orders.length - 1]?.orderId ?? "0"}</strong></p>
       </div>
       <div class="confirm-checkout__content">
         <p>

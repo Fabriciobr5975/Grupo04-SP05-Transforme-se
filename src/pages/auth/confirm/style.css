@@ -97,14 +97,14 @@
 }
 
 /* Chrome, Safari, Edge */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: auto;
 }
@@ -119,4 +119,56 @@ input[type=number] {
 
 .auth-confirm-main__form__button button {
   margin-block: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .auth-confirm-container__main {
+    margin: 4rem 1rem;
+    padding: 1rem;
+  }
+
+  .auth-confirm-container__logo {
+    background-color: #fff5e8;
+    height: 40vh;
+    padding-block: 2rem;
+  }
+
+  .auth-confirm-container__logo img {
+    width: 200px;
+    height: 30vh;
+    object-position: center;
+  }
+
+  .auth-confirm__content-title {
+    font-size: 1.5rem;
+  }
+
+  .auth-confirm__content p {
+    font-size: 0.9625rem;
+  }
+
+  .auth-confirm__content p:last-child {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .auth-confirm-main__form-content {
+    gap: 0.875rem;
+  }
+
+  .confirm-input {
+    width: 3.625rem;
+    height: 3.625rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .auth-confirm-main__form-content {
+    gap: 0.5rem;
+  }
+
+  .confirm-input {
+    width: 2.625rem;
+    height: 2.625rem;
+  }
 }

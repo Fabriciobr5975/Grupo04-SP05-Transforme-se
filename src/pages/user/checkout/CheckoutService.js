@@ -5,12 +5,14 @@ import {
     calculateTotalProductPrice,
     calculateTotalFreightPrice,
 } from "../../../services/CartService.js";
+import OrderStatusEnum from "../../../model/orders/OrderStatusEnum.js";
 
 export function useCheckout() {
     const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
     const userCart = JSON.parse(sessionStorage.getItem("userCart")) ?? [];
     let totalPriceCart = calculateTotalProductPrice(userCart);
     let totalFreightPriceCart = calculateTotalFreightPrice(userCart);
+    let selectedAddressId = null;
 
     const removeProductFromCart = (productId) => {
         const numericId = Number(productId);
@@ -32,7 +34,7 @@ export function useCheckout() {
             : cartCheckoutProductHTML();
 
         handleProductPrices(newProducts);
-        // cartDelete(productRemoved);
+        cartDelete(productRemoved);
     };
 
     const handleProductPrices = (products) => {
@@ -88,7 +90,99 @@ export function useCheckout() {
         removeProductButton.forEach((button) => button.addEventListener("click", handleProductRemove));
     });
 
-    return { user, userCart, totalPriceCart, totalFreightPriceCart };
+    const handleAddressInsertion = (address) => {
+        const existAdress = user.addresses.some(a => a.cep === address.cep);
+
+        if (existAdress) {
+            alert("Esse endereço Já foi inserido!");
+            return;
+        }
+
+        const nextAddressId = getNextAddressId(user.addresses);
+
+        user.addresses.push({
+            addressId: nextAddressId,
+            userId: user.userId,
+            ...address
+        });
+        
+        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+        renderNewAddresses(user.addresses);
+    }
+
+    const selectAddress = (addressId) => {
+        const numericId = Number(addressId);
+        if (!Number.isInteger(numericId)) return;
+
+      const selectedAddress = user.addresses.find(address => address.addressId === numericId);
+      if (!selectedAddress) return;
+
+      selectedAddressId = numericId;
+      document.querySelectorAll(".checkout-page__address-card").forEach((card) => {
+        card.classList.toggle(
+          "checkout-page__address-card--selected",
+          card.dataset.addressId === String(selectedAddressId)
+        );
+      });
+
+        return selectedAddress;
+      }
+
+      const createOrder = () => {
+        if (!user || !Array.isArray(userCart) || userCart.length === 0) {
+          alert("Adicione pelo menos um produto ao carrinho para finalizar o pedido.");
+          return false;
+        }
+
+        const selectedAddress = user.addresses.find(
+          (address) => address.addressId === selectedAddressId
+        );
+
+        if (!selectedAddress) {
+          alert("Selecione um endereço de entrega para continuar.");
+          return false;
+        }
+
+        const previousOrder = JSON.parse(sessionStorage.getItem("currentOrder"));
+        const orderId = Number(previousOrder?.orderId || 0) + 1;
+        const order = {
+          orderId,
+          orderData: new Date().toISOString(),
+          deliveryTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+          orderStatus: OrderStatusEnum.PENDING,
+          totalOrderValue: Number((totalPriceCart + totalFreightPriceCart).toFixed(2)),
+          user,
+          deliveryAddress: `${selectedAddress.address}, ${selectedAddress.number} - ${selectedAddress.city}`,
+          addressNumber: selectedAddress.number,
+          addressComplement: selectedAddress.complement,
+          products: userCart.map((product) => ({ ...product })),
+          freight: totalFreightPriceCart,
+          status: OrderStatusEnum.PENDING,
+        };
+
+        const orders = JSON.parse(sessionStorage.getItem("orders")) ?? [];
+
+        if(orders.length === 0) sessionStorage.setItem("orders", JSON.stringify([order]));
+        else sessionStorage.setItem("orders", JSON.stringify([order, ...orders]));
+
+        sessionStorage.removeItem("userCart");
+        userCart.splice(0, userCart.length);
+
+        return true;
+    }
+
+      return { user, userCart, totalPriceCart, totalFreightPriceCart, handleAddressInsertion, selectAddress, createOrder };
+}
+
+function getNextAddressId(addresses) {
+    if (!Array.isArray(addresses) || addresses.length === 0) return 1;
+
+    const lastAddressId = addresses.reduce((highestId, address) => {
+        const addressId = Number(address.addressId) || 0;
+        return Math.max(highestId, addressId);
+    }, 0);
+
+    return lastAddressId + 1;
 }
 
 function renderCartItem(product) {
@@ -169,4 +263,31 @@ export function cartCheckoutProductHTML() {
     return (`
       <p class="checkout-page__info-cart--empty">Você não tem produtos para finalizar a compra</p>
     `);
+}
+
+function renderNewAddresses(addresses) {
+    const addressHTML = document.querySelector(".checkout-page__section--address");
+    if (!addressHTML) return;
+
+    addressHTML.innerHTML = `
+      <h2 class="checkout-page__section-title">2. Endereço de Entrega</h2>
+      ${Array.isArray(addresses) && addresses.length > 0 ? addresses.map((address) => `
+      <div class="checkout-page__address-card" data-address-id="${address.addressId}">
+        <p class="checkout-page__address-title">${address.address}, ${address.number}</p>
+        <p class="checkout-page__address-text">${address.city} · ${address.state}</p>
+        <p class="checkout-page__address-text">CEP ${address.cep}</p>
+        <p class="checkout-page__address-text">Complemento: ${address.complement}</p>
+        <div class="checkout-page__buttons">
+          <button
+            id="checkout-page__button--select-address-${address.addressId}"
+            data-address-id="${address.addressId}"
+            class="checkout-page__button select-button--address"
+            type="button"
+          >Selecionar Endereço</button>
+          <button class="checkout-page__button" type="button">Alterar Endereço</button>
+        </div>
+      </div>
+      `).join("") : ""}
+      <button id="add-address-btn" class="checkout-page__button" type="button">Inserir Novo Endereço</button>
+    `
 }

@@ -13,10 +13,6 @@ export const ApplicationRoutes = Object.freeze([
     component: () => import("../pages/auth/register/index.js"),
   },
   {
-    path: "/auth/opcional/address",
-    component: () => import("../pages/auth/optional-address/index.js"),
-  },
-  {
     path: "/auth/confirm",
     component: () => import("../pages/auth/confirm/index.js"),
   },

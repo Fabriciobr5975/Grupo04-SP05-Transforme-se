@@ -27,22 +27,8 @@ const template = `
 
 const ConfirmUserDataPage = {
   template: template,
-  styles: "/src/pages/auth/confirm/style.css"
+  styles: "/src/pages/auth/confirm/style.css",
+  scripts: "/src/pages/auth/confirm/ConfirmService.js"
 }
 
 export default ConfirmUserDataPage;
-
-
-/**
- *   function limitarDigitos(input, max) {
-    input.addEventListener("input", () => {
-      if (input.value.length > max) {
-        input.value = input.value.slice(0, max);
-      }
-    });
-  }
-
-  const campoCodigo = document.getElementById("codigo");
-  limitarDigitos(campoCodigo, 6); 
- */
-

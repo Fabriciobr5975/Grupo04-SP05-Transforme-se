@@ -73,7 +73,7 @@ export function useProductDetail() {
         updateQuantityDisplay();
     }
 
-    function handleInsertionProductCart(event, product, quantity) {
+    function handleInsertionProductCart(event, product, quantity, selected = false) {
         event.preventDefault();
 
         if (!user) {
@@ -97,6 +97,7 @@ export function useProductDetail() {
                 productId: product.productId,
                 name: product.name,
                 category: product.category,
+                selected,
                 productQuantity: product.productQuantity,
                 unitPrice: product.price,
                 freight: Math.floor(Math.random() * (40 - 10) + 10),
@@ -118,10 +119,13 @@ export function useProductDetail() {
     document.addEventListener("click", handleProductQuantityDecrease);
 
     function handleInsertCartClick(event) {
-        const button = event.target.closest("#product-detail--add-cart");
-        if (!button || !product) return;
-
-        handleInsertionProductCart(event, product, productQuantity);
+        const buttonAddCheckout = event.target.closest("#product-detail--add-checkout");
+        const buttonAddCart = event.target.closest("#product-detail--add-cart");
+        
+        if(product) {
+            if(buttonAddCheckout) handleInsertionProductCart(event, product, productQuantity, true);
+            else if(buttonAddCart) handleInsertionProductCart(event, product, productQuantity);
+        }        
     };
 
     document.addEventListener("click", handleInsertCartClick);

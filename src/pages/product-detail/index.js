@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
                 <span class="product-detail-page__price-unit">${product.saleByWeight ? '/kg' : '/qtd'}</span>
               </p>
               <div class="product-detail-page__buttons">
-                <a href="/checkout" class="product-detail-page__button" data-route>
+                <a href="/checkout" id="product-detail--add-checkout" class="product-detail-page__button" data-route>
                   <i class="fa-solid fa-cart-plus"></i>
                   Comprar
                 </a>

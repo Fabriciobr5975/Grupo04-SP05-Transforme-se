@@ -1,9 +1,8 @@
 "use strict";
-import { orders } from "../../../../seeds/orders.js";
 
 export function useOrders() {
     const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
-    const userOrders = orders.filter(order => order.user.userId === user.userId) ?? [];
+    const userOrders = JSON.parse(sessionStorage.getItem("orders"));
 
     if (userOrders.length === 0) {
         return { userOrders: [] };

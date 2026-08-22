@@ -15,7 +15,7 @@ function verifyUser(event) {
     }
 
     if (Array.isArray(users))
-        users.find((user, index) => {
+        users.find((user) => {
             if (user.email === emailInput.value.trim() && user.password === passwordInput.value.trim()) {
                 validatedUser = true;
                 sessionStorage.setItem("loggedInUser", JSON.stringify(user));
