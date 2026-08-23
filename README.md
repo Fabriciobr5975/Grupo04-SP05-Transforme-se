@@ -4,15 +4,11 @@ Website moderno e responsivo construído em HTML5, CSS3 e JavaScript para o curs
 
 ## Sobre 📖
 
-Este repositório contém a implementação do front-end da aplicação: uma interface web moderna que oferece aos clientes uma experiência intuitiva para navegação, busca de produtos, gerenciamento de carrinho, checkout e acompanhamento de pedidos na doceraria **Nossa Doceria**.
+Este repositório contém a implementação do front-end da aplicação: uma interface web moderna que oferece aos clientes uma experiência intuitiva para navegação, busca de produtos, gerenciamento de carrinho, checkout e acompanhamento de pedidos na doceria **Nossa Doceria**.
 
 ## Objetivo 🎯
 
 Fornecer uma interface web estável, responsiva e acessível que permita aos usuários navegar pelo catálogo de produtos, realizar compras, gerenciar suas contas e revisar pedidos anteriores com segurança e facilidade.
-
-## Principais Funcionalidades 🎮
-
-- 
 
 ## Principais Tecnologias 🧑‍💻
 
@@ -39,11 +35,11 @@ Contribuições são bem-vindas. Abra issues para relatar bugs ou sugerir melhor
 
 ## Referências 🔗
 
-- 
-
-## Integrantes do projeto
-
--
+- ![Vanilla JS Single Page Application Routes | # or URL](https://www.youtube.com/watch?v=JmSb1VFoP7)
+- ![Creating an SPA Router in Vanilla JS](https://www.youtube.com/watch?v=ZleShIpv5zQ)
+- ![Web Components e Seus Três PRINCIPAIS CONCEITOS: DOM, Shadow DOM e Virtual DOM](https://www.youtube.com/watch?v=PMm-VRXz8I8)
+- ![W3Schools - JavaScript Tutorial](https://www.w3schools.com/)
+- ![Mozilla Developers](https://developer.mozilla.org/pt-BR/)
 
 ##  
 <div align="center">
