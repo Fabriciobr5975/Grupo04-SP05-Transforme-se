@@ -47,10 +47,10 @@ const template = `
                 Revise ou acompanhe todos os seus pedidos
               </p>
             </a>
-            <a href="/profile/feedback" class="profile-links__item">
+            <a href="/cart" class="profile-links__item">
               <div class="profile-links__item__title">  
-                <i class="fa-solid fa-star"></i>
-                Avaliações
+                <i class="fa-solid fa-cart-shopping"></i>
+                Meu Carrinho
               </div>
               <p>
                 Insira, altere ou remova suas suas avaliações pós compra
