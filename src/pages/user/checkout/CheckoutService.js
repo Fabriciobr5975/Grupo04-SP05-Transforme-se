@@ -57,8 +57,12 @@ export function useCheckout() {
         const nextQuantity = Math.min(99, Math.max(1, product.quantity + change));
 
         product.quantity = nextQuantity;
+
+        totalPriceCart = calculateTotalProductPrice(userCart);
+        totalFreightPriceCart = calculateTotalFreightPrice(userCart);
+
         updateQuantityDisplay(product.productId, nextQuantity);
-        handleProductQuantity(userCart);
+        renderNewPrices(totalPriceCart, totalFreightPriceCart);
         cartUpdate(product);
     }
 

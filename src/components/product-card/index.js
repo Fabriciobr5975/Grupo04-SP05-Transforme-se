@@ -67,7 +67,8 @@ export default function ProductCard(product) {
 
   function handleProduct(event) {
     const button = event.target.closest(`#product-${product.productId}`);
-    if (!button) return;
+    const imageButton = event.target.closest(`#image-product-${product.productId}`);
+    if (!button && !imageButton) return;
     sessionStorage.setItem("productSelected", JSON.stringify(product));
     window.navigateTo("/product");
   }
@@ -109,18 +110,17 @@ export default function ProductCard(product) {
       `<i class="fa-solid fa-heart favorite-product__icon"></i>`
       : `<i class="fa-regular fa-heart favorite-product__icon"></i>`}
         </button>
-        <a
+        <button
+          id="image-product-${product.productId}",
           class="product-card__media-link"
-          href="/product"
           aria-label="Adicionar produto"
-          data-route
         >
           <img
             src="${product.images[0] || 'src/assets/images/default-product.png'}"
             alt="${product.name}"
             class="product-card__image"
           />
-        </a>
+        </button>
         ${`
           <div class="product-card__overlay">
             <div class="product-card__controls">

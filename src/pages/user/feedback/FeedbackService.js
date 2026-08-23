@@ -95,6 +95,7 @@ function handleInsertClick() {
 	saveReviews(reviews);
 	hasEvaluation = true;
 	updateButtons();
+	alert("Avaliação enviada com sucesso!");
 }
 
 function handleRemoveClick() {
@@ -110,6 +111,7 @@ function handleRemoveClick() {
 	paintStars(selectedRating);
 	updateDescriptionLength();
 	updateButtons();
+	alert("Avaliação Removida com sucesso!");
 }
 
 function loadCurrentReview() {

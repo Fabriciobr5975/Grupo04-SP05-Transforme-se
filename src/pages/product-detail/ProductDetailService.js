@@ -4,9 +4,10 @@ import { users } from "../../../seeds/users.js";
 export function useProductDetail() {
     const user = sessionStorage.getItem("loggedInUser");
     const product = JSON.parse(sessionStorage.getItem("productSelected")) || null;
+    const newReviews = JSON.parse(sessionStorage.getItem("reviews")) || [];
 
     const reviewsByUser = product
-        ? reviews.reduce((map, review) => {
+        ? newReviews.reduce((map, review) => {
             if (!map.has(product.productId)) {
                 map.set(product.productId, []);
             }

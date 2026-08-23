@@ -114,13 +114,13 @@ export default function ProductDetailPage() {
         <section class="product-detail-page__section product-detail-page__section-reviews">
           <h2 class="product-detail-page__section-title">Comentários:</h2>
           <div class="product-detail-page__reviews">
-            ${!reviewsByUser ? Array.from(reviewsByUser.values())[0].map((values) => `
+            ${reviewsByUser ? Array.from(reviewsByUser.values())[0].map((values) => `
                 <article class="product-detail-page__review-card">
                   <div class="product-detail-page__review-header">
                     <div class="product-detail-page__review-author">
                       <span class="product-detail-page__review-avatar">${values.reviewUser.firstName.charAt(0)}</span>
                       <div>
-                    <h3 class="product-detail-page__review-name">${values.reviewUser.firstName} - "${values.review.title}"</h3>
+                    <h3 class="product-detail-page__review-name">${values.reviewUser.firstName}</h3>
                     <span class="product-detail-page__review-meta">Avaliação do cliente</span>
                   </div>
                 </div>
