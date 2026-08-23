@@ -120,7 +120,7 @@ export default function ProductDetailPage() {
                     <div class="product-detail-page__review-author">
                       <span class="product-detail-page__review-avatar">${values.reviewUser.firstName.charAt(0)}</span>
                       <div>
-                    <h3 class="product-detail-page__review-name">${values.reviewUser.firstName}</h3>
+                    <h3 class="product-detail-page__review-name">${values.reviewUser.firstName.concat(" ", values.reviewUser.lastName)}</h3>
                     <span class="product-detail-page__review-meta">Avaliação do cliente</span>
                   </div>
                 </div>

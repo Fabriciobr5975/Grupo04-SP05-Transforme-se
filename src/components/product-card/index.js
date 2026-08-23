@@ -118,6 +118,7 @@ export default function ProductCard(product) {
           <img
             src="${product.images[0] || 'src/assets/images/default-product.png'}"
             alt="${product.name}"
+            loading="lazy"
             class="product-card__image"
           />
         </button>

@@ -2,7 +2,7 @@ import ProductCategoryEnum from "../src/model/product/ProductCategoryEnum.js";
 import { ingredientCatalog } from "./ingredients.js";
 
 const findIngredient = (ingredientName) =>
-  ingredientCatalog.find((ingredient) => ingredient.ingredient === ingredientName);
+  ingredientCatalog.find((ingredient) => ingredient.name === ingredientName);
 
 const buildIngredients = (names) => names.map((name) => findIngredient(name)).filter(Boolean);
 
@@ -19,9 +19,8 @@ export const products = [
     updateOn: "2025-05-18T12:30:00.000Z",
     productSalesQuantity: 128,
     images: [
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1639158924965-7be3bb57506b?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1667115138166-76853c900d80?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     ],
     reviewRating: 4.8,
     saleByWeight: false,
@@ -39,9 +38,7 @@ export const products = [
     updateOn: "2025-05-10T08:40:00.000Z",
     productSalesQuantity: 94,
     images: [
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1776722089433-3513d173f5ee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Coco ralado", "Leite condensado", "Manteiga", "Leite de coco"]),
     reviewRating: 4.5,
@@ -59,10 +56,8 @@ export const products = [
     updateOn: "2025-05-21T15:20:00.000Z",
     productSalesQuantity: 73,
     images: [
-      "https://images.unsplash.com/photo-1464306076886-da185f6a9d8f?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1503485838016-53579610c389?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1599034596263-63c68c75ef8b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Morango", "Creme de leite", "Farinha de trigo", "Açúcar", "Ovos"]),
     reviewRating: 5,
@@ -80,9 +75,7 @@ export const products = [
     updateOn: "2025-01-14T10:00:00.000Z",
     productSalesQuantity: 81,
     images: [
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1676300186098-9b5ae9916e3c?q=80&w=690&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Farinha de trigo", "Açúcar", "Ovos", "Chocolate em pó", "Manteiga"]),
     reviewRating: 4.8,
@@ -100,9 +93,7 @@ export const products = [
     updateOn: "2025-03-29T18:05:00.000Z",
     productSalesQuantity: 168,
     images: [
-      "https://images.unsplash.com/photo-1499636136210-6d4ee7a5b1d7?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Farinha de trigo", "Açúcar", "Ovos", "Chocolate meio amargo", "Manteiga"]),
     reviewRating: 5,
@@ -120,9 +111,7 @@ export const products = [
     updateOn: "2025-04-22T09:25:00.000Z",
     productSalesQuantity: 110,
     images: [
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1613043752483-560f9cdb034a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Chocolate meio amargo", "Farinha de trigo", "Açúcar", "Nozes", "Ovos"]),
     reviewRating: 4.1,
@@ -140,10 +129,7 @@ export const products = [
     updateOn: "2025-05-28T16:10:00.000Z",
     productSalesQuantity: 57,
     images: [
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1464306076886-da185f6a9d8f?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Cream cheese", "Açúcar", "Morango", "Creme de leite", "Farinha de trigo"]),
     reviewRating: 4.2,
@@ -161,9 +147,7 @@ export const products = [
     updateOn: "2025-05-05T10:15:00.000Z",
     productSalesQuantity: 91,
     images: [
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1596983474615-1ec9a659a9c1?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Chocolate meio amargo", "Creme de leite", "Leite condensado", "Açúcar", "Baunilha"]),
     reviewRating: 4.8,
@@ -181,9 +165,7 @@ export const products = [
     updateOn: "2025-03-18T11:10:00.000Z",
     productSalesQuantity: 122,
     images: [
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/4/44/Quindim.jpg",
     ],
     ingredients: buildIngredients(["Coco ralado", "Ovos", "Açúcar", "Leite de coco", "Baunilha"]),
     reviewRating: 4.8,
@@ -191,7 +173,7 @@ export const products = [
   },
   {
     productId: 10,
-    name: "Cocada Baiana",
+    name: "Cocada",
     category: ProductCategoryEnum.DOCE,
     price: 24.9,
     weight: 200,
@@ -201,9 +183,7 @@ export const products = [
     updateOn: "2025-05-09T13:30:00.000Z",
     productSalesQuantity: 96,
     images: [
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1662490880155-700ebafbae4c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Coco ralado", "Açúcar", "Leite de coco", "Manteiga"]),
     reviewRating: 4.3,
@@ -221,9 +201,7 @@ export const products = [
     updateOn: "2025-05-12T14:50:00.000Z",
     productSalesQuantity: 64,
     images: [
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1464306076886-da185f6a9d8f?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1641848421525-e1da6f1b67aa?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Limão", "Creme de leite", "Açúcar", "Farinha de trigo", "Ovos"]),
     reviewRating: 4.8,
@@ -241,9 +219,7 @@ export const products = [
     updateOn: "2025-05-16T08:25:00.000Z",
     productSalesQuantity: 78,
     images: [
-      "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1626238015170-608e4a4c6ff8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Laranja", "Farinha de trigo", "Açúcar", "Ovos", "Baunilha"]),
     reviewRating: 4.5,
@@ -261,9 +237,8 @@ export const products = [
     updateOn: "2025-04-12T12:20:00.000Z",
     productSalesQuantity: 142,
     images: [
-      "https://images.unsplash.com/photo-1499636136210-6d4ee7a5b1d7?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1734772307171-fa1ee9640c95?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1661416958579-94e624f7332d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Farinha de trigo", "Açúcar", "Ovos", "Baunilha", "Manteiga"]),
     reviewRating: 5,
@@ -281,9 +256,7 @@ export const products = [
     updateOn: "2025-05-22T10:00:00.000Z",
     productSalesQuantity: 74,
     images: [
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1718897266472-5b7229ebdd3d?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Farinha de trigo", "Manteiga", "Açúcar", "Chocolate meio amargo", "Ovos"]),
     reviewRating: 3.9,
@@ -301,13 +274,82 @@ export const products = [
     updateOn: "2025-05-17T09:35:00.000Z",
     productSalesQuantity: 83,
     images: [
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1765946024682-0098eacb2432?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     ingredients: buildIngredients(["Chocolate em pó", "Leite condensado", "Pistache", "Manteiga", "Açúcar"]),
     reviewRating: 4.9,
     saleByWeight: false
-  }
+  },
+  {
+    productId: 16,
+    name: "Floresta Negra",
+    category: ProductCategoryEnum.BOLO,
+    price: 178.0,
+    weight: 1200,
+    productQuantity: 8,
+    description: "O clássico Floresta Negra em uma versão artesanal irresistível. Preparado com camadas de pão de ló de chocolate, recheio cremoso, chantilly leve e cerejas selecionadas, finalizado com raspas de chocolate para um sabor marcante e equilibrado. Perfeito para celebrar momentos especiais ou adoçar o dia.",
+    insertAt: "2025-02-08T16:40:00.000Z",
+    updateOn: "2026-01-19T09:35:00.000Z",
+    productSalesQuantity: 31,
+    images: [
+      "/src/assets/images/products/Floresta-Negra.png",
+    ],
+    ingredients: buildIngredients(["Chocolate em pó", "Creme de leite", "Ovos", "Chocolate meio amargo", "Açúcar"]),
+    reviewRating: 4.9,
+    saleByWeight: false
+  },
+  {
+    productId: 17,
+    name: "Tiramisu",
+    category: ProductCategoryEnum.DOCE,
+    price: 69.99,
+    weight: 900,
+    productQuantity: 15,
+    description: "Uma clássica sobremesa italiana preparada com camadas de creme de mascarpone, biscoitos umedecidos em café e finalizada com cacau em pó. Cremosa, delicada e perfeita para qualquer ocasião.",
+    insertAt: "2025-04-14T14:20:00.000Z",
+    updateOn: "2026-02-03T11:15:00.000Z",
+    productSalesQuantity: 46,
+    images: [
+      "/src/assets/images/products/Tiramisu.png",
+    ],
+    ingredients: buildIngredients(["Creme de leite", "Açúcar", "Chocolate meio amargo", "Baunilha", "Ovos"]),
+    reviewRating: 4.9,
+    saleByWeight: false
+  },
+  {
+    productId: 18,
+    name: "Fondue Delícia",
+    category: ProductCategoryEnum.DOCE,
+    price: 89.9,
+    weight: 700,
+    productQuantity: 12,
+    description: "Uma deliciosa combinação de fondue artesanal com chocolate ao leite e chocolate branco, acompanhada de frutas frescas e doces selecionados. Ideal para compartilhar momentos especiais ou se presentear com uma experiência irresistível, repleta de sabor e carinho.",
+    insertAt: "2025-06-21T12:10:00.000Z",
+    updateOn: "2026-02-14T10:45:00.000Z",
+    productSalesQuantity: 39,
+    images: [
+      "/src/assets/images/products/Fondue-Delícia.png",
+    ],
+    ingredients: buildIngredients(["Chocolate meio amargo", "Creme de leite", "Morango", "Pistache", "Açúcar"]),
+    reviewRating: 4.9,
+    saleByWeight: false
+  },
+  {
+    productId: 19,
+    name: "Petit Gateau",
+    category: ProductCategoryEnum.DOCE,
+    price: 69.99,
+    weight: 180,
+    productQuantity: 20,
+    description: "Nosso Petit Gateau é preparado com um delicado bolinho de chocolate de casca macia e interior cremoso, servido com uma generosa bola de sorvete de baunilha e calda de chocolate. Uma combinação clássica que une o quente e o gelado em uma experiência irresistível.",
+    insertAt: "2025-08-09T15:30:00.000Z",
+    updateOn: "2026-02-20T13:05:00.000Z",
+    productSalesQuantity: 67,
+    images: [
+      "/src/assets/images/products/Petit-Gateau.png",
+    ],
+    ingredients: buildIngredients(["Chocolate meio amargo", "Creme de leite", "Ovos", "Baunilha", "Açúcar"]),
+    reviewRating: 4.9,
+    saleByWeight: false
+  },
 ];

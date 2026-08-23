@@ -4,7 +4,7 @@ import { users } from "../../../seeds/users.js";
 export function useProductDetail() {
     const user = sessionStorage.getItem("loggedInUser");
     const product = JSON.parse(sessionStorage.getItem("productSelected")) || null;
-    const newReviews = JSON.parse(sessionStorage.getItem("reviews")) || [];
+    const newReviews = JSON.parse(sessionStorage.getItem("reviews")) || reviews;
 
     const reviewsByUser = product
         ? newReviews.reduce((map, review) => {
@@ -14,10 +14,8 @@ export function useProductDetail() {
 
             if (product.productId === review.productId) {
                 const user = users.find(u => u.userId === review.userId) || {};
-                const { firstName = "", lastName = "", email = "" } = user;
-
                 map.get(product.productId).push({
-                    reviewUser: { firstName, lastName, email },
+                    reviewUser: { firstName: review?.firstName || "Anônimo" , lastName: user?.lastName || "" , email: user?.email || "" },
                     review
                 });
             }
