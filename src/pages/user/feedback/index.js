@@ -1,7 +1,11 @@
 import BaseLayout from "../../../layouts/index.js";
 import Button from "../../../components/button/index.js";
 
-const template = `
+export default function FeedbackPage() {
+  const product = JSON.parse(sessionStorage.getItem("feedbackProduct")) || {};
+  const productImage = product.image || product.images?.[0] || "";
+
+  const template = `
    <div class="feedback-page">
        <div class="feedback-page__topbar">
          <button type="button" class="feedback-page__back-button" onclick="window.history.back()">
@@ -19,13 +23,13 @@ const template = `
          <section class="feedback-page__form">
           <article class="feedback-page__product">
             <div class="feedback-page__product-image">
-              <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Box de Trufas Premium" />
+              <img src="${productImage}" alt="${product.name || "Produto avaliado"}" />
             </div>
 
             <div class="feedback-page__product-content">
               <span class="feedback-page__product-label">Produto avaliado</span>
-              <h2 class="feedback-page__product-name">Box de Trufas Premium</h2>
-              <p class="feedback-page__product-description">Uma seleção especial de trufas para deixar sua experiência ainda mais doce.</p>
+              <h2 class="feedback-page__product-name">${product.name || "Produto não encontrado"}</h2>
+              <p class="feedback-page__product-description">${product.description || "Registre sua experiência com este produto."}</p>
             </div>
           </article>
 
@@ -65,11 +69,10 @@ const template = `
      </div> 
 `;
 
-const FeedbackPage = {
-  template: BaseLayout(template),
-  styles: "/src/pages/user/feedback/style.css",
-  scripts: "/src/pages/user/feedback/FeedbackService.js"
-};
-
-export default FeedbackPage;
+  return {
+    template: BaseLayout(template),
+    styles: "/src/pages/user/feedback/style.css",
+    scripts: "/src/pages/user/feedback/FeedbackService.js"
+  };
+}
 

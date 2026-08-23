@@ -19,6 +19,27 @@
   height: 20rem;
 }
 
+.product-card--favorite-product {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  background-color: #ffb3be40;
+  border: 2px solid #ff4863;
+  border-radius: calc(infinity * 1px);
+}
+
+.favorite-product__icon {
+  margin-top: 0.125rem;
+  color: #ff4863;
+  font-size: 1.05rem;
+}
+
 .product-card__media-link {
   display: block;
   width: 100%;
@@ -169,7 +190,7 @@
   text-align: center;
   text-decoration: none;
   font-weight: 700;
- }
+}
 
 .product-card__icon {
   margin-right: 0.25rem;

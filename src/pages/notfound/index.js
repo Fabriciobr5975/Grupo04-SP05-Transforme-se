@@ -16,7 +16,7 @@ const template = `
       <aside class="notfound-page__action">
         <i class="fa-solid fa-arrow-left notfound-page__icon"></i>
         <a
-          href="/profile"
+          href="/"
           class="notfound-page__link"
           data-route
         >

@@ -1,5 +1,4 @@
 import BaseLayout from "../../layouts/index.js";
-import Button from "../../components/button/index.js";
 import ProductCard from "../../components/product-card/index.js";
 import { products } from "../../../seeds/products.js";
 

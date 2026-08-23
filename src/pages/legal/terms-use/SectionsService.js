@@ -120,13 +120,6 @@ const termsSections = [
       "Estes Termos de Uso poderão ser alterados a qualquer momento para adequação legal, operacional ou comercial. A versão atualizada será disponibilizada neste site, indicando sua data de vigência."
     ]
   },
-  {
-    id: "contato",
-    heading: "🧁 11. Como Entrar em Contato",
-    paragraphs: [
-      "Para dúvidas sobre privacidade, dados pessoais ou segurança, fale conosco:"
-    ],
-  }
 ];
 
 export default termsSections;

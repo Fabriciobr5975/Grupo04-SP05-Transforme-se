@@ -173,7 +173,17 @@
   }
 
   .navbar {
-    display: none;
+    grid-row: 2;
+    grid-column: span 2;
+  }
+
+  .navbar__list {
+    margin-top: 0.875rem;
+    gap: 1rem;
+  }
+
+  .navbar__list__item a {
+    font-size: 0.875rem;
   }
 
   .navbar__list {

@@ -123,13 +123,6 @@ const privacyPoliciesSections = [
       "Esta Política pode ser atualizada a qualquer momento, com data revisada ao final da página. Recomendamos verificá-la regularmente.",
     ],
   },
-  {
-    id: "contato",
-    heading: "📌 11. Como Entrar em Contato",
-    paragraphs: [
-      "Para dúvidas sobre privacidade, dados pessoais ou segurança, fale conosco:",
-    ],
-  },
 ];
 
 export default privacyPoliciesSections;

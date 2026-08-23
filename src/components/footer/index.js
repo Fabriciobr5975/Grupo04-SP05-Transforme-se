@@ -1,8 +1,11 @@
-import { setStyle  } from "../../utils/PageUtil.js";
+import { setStyle } from "../../utils/PageUtil.js";
 
 export default function Footer() {
   setStyle("/src/components/footer/style.css");
-  
+
+  const userIsLogged = () =>
+    sessionStorage.getItem("loggedInUser") ? true : false;
+
   return (`
     <footer class="footer">
       <section class="footer__content">
@@ -20,7 +23,8 @@ export default function Footer() {
             <ul>
               <li><a href="/" data-route>Home</a></li>
               <li><a href="/about-us" data-route>Sobre Nós</a></li>
-              <li><a href="/auth/login" data-route>Login</a></li>
+              ${userIsLogged() ? 
+                `<li><a href="/profile" data-route>Minha Conta</a></li>` : `<li><a href="/auth/login" data-route>Login</a></li>`}
             </ul>
           </div>
 

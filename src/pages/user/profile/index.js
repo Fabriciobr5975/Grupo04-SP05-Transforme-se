@@ -23,7 +23,7 @@ const template = `
               <span>Editar perfil</span>
             </button>
             <p class="profile__header-account-creation">Conta criada há: <strong>${profileService.getProfileData().accountCreateAt}</strong></p>
-            <a href="/privacy-terms" class="profile__header-terms-of-use" data-route>Termos de Uso</a>
+            <a href="/terms-of-use" class="profile__header-terms-of-use" data-route>Termos de Uso</a>
           </section>
 
           <div class="profile-links">

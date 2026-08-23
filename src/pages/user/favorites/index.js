@@ -1,4 +1,7 @@
 import BaseLayout from "../../../layouts/index.js";
+import { useFavorites } from "./FavoritesService.js";
+
+const { productsFavorites, quantityOfProducts, buildFavoritedDate} = useFavorites();
 
 const template = `
   <div class="layout-user-page">
@@ -18,34 +21,54 @@ const template = `
       </header>
 
       <aside class="favorite-page__summary" aria-label="Resumo da lista de favoritos">
-        <p><span>Sua lista conta com</span> • 1 item salvo no total</p>
-        <button type="button" class="favorite-page__button favorite-page__button--primary favorite-page__button--reset">
+        <p class="favorite-page__summary--info"><span>Sua lista conta com</span> • ${quantityOfProducts} item salvo no total</p>
+        <button 
+          id="clear-favorites"
+          type="button" 
+          class="favorite-page__button 
+          favorite-page__button--primary favorite-page__button--reset"
+        >
           Resetar Lista
         </button>
       </aside>
 
       <section class="favorite-page__content" aria-label="Produtos favoritos">
         <div class="favorite-page__items">
+          ${Array.isArray(productsFavorites) && productsFavorites.length > 0 ? productsFavorites.map(product => 
+          `
           <article class="favorite-page__item">
             <div class="favorite-page__item-image">
-              <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Imagem do produto" />
+              <img src="${product?.images[0] || 'src/assets/images/default-product.png'}" alt="${product.name}" />
             </div>
 
             <div class="favorite-page__item-body">
               <div class="favorite-page__item-heading">
-                <h2>Box de Trufas Premium</h2>
-                <button type="button" class="favorite-page__button favorite-page__button--link" aria-label="Remover item dos favoritos">
+                <h2>${product.name}</h2>
+                <button 
+                  id="favorite-product__button-remove-${product.productId}" 
+                  data-product-id="${product.productId}"
+                  type="button" 
+                  class="favorite-page__button favorite-page__button--link remove-favorite" 
+                  aria-label="Remover item dos favoritos"
+                >
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </div>
 
-              <p class="favorite-page__item-meta">Favoritou: 19/07/2026</p>
+              <p class="favorite-page__item-meta">Favoritou: ${buildFavoritedDate(product.dateFavorited)}</p>
 
-              <button type="button" class="favorite-page__button favorite-page__button--primary favorite-page__button--product">
+              <button
+                id="product-${product.productId}"
+                data-product-id="${product.productId}"
+                type="button" 
+                class="favorite-page__button favorite-page__button--primary favorite-page__button--product"
+              >
                 Ver detalhes do produto
               </button>
             </div>
           </article>
+          `
+          ).join("") : ""}
         </div>
       </section>
     </div>

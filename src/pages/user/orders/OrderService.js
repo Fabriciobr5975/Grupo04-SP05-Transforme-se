@@ -1,12 +1,7 @@
 "use strict";
 
 export function useOrders() {
-    const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
-    const userOrders = JSON.parse(sessionStorage.getItem("orders"));
-
-    if (userOrders.length === 0) {
-        return { userOrders: [] };
-    }
+    const userOrders = JSON.parse(sessionStorage.getItem("orders")) ?? [];
 
     const formattedOrders = userOrders.map(order => ({
         ...order,
@@ -14,6 +9,22 @@ export function useOrders() {
         deliveryTime: buildOrderDate(order.deliveryTime),
     }));
 
+    document.addEventListener("click", (event) => {
+        const button = event.target.closest(".orders-page__button--ghost");
+        if (!button) return;
+
+        const productId = Number(button.dataset.productId);
+        const orderId = Number(button.dataset.orderId);
+
+        if (!Number.isInteger(productId) || !Number.isInteger(orderId)) return;
+
+        const order = userOrders.find((currentOrder) => currentOrder.orderId === orderId);
+        const product = order?.products.find((currentProduct) => currentProduct.productId === productId);
+        if (!product) return;
+
+        sessionStorage.setItem("feedbackProduct", JSON.stringify(product));
+        window.navigateTo("/profile/feedback");
+    });
 
     return {
         userOrders: formattedOrders,

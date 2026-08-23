@@ -1,8 +1,69 @@
 import { setStyle } from "../../utils/PageUtil.js";
 import Button from "../button/index.js";
 
+const productRegistry = new Map();
+
+function getFavoriteProducts() {
+  return JSON.parse(sessionStorage.getItem("productsFavorites")) || [];
+}
+
+function updateFavoriteDisplay(productId, isFavorite) {
+  const button = document.querySelector(`#favorite-product__button-product-${productId}`);
+  if (!button) return;
+
+  button.innerHTML = `
+    ${isFavorite
+      ? `<i class="fa-solid fa-heart favorite-product__icon"></i>`
+      : `<i class="fa-regular fa-heart favorite-product__icon"></i>`}
+  `;
+}
+
+function initFavoriteHandler() {
+  if (window.productFavoriteHandlerInitialized) return;
+  window.productFavoriteHandlerInitialized = true;
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".product-card--favorite-product");
+    if (!button) return;
+
+    const productId = Number(button.dataset.productId);
+    if (!Number.isInteger(productId)) return;
+
+    const favoriteProducts = getFavoriteProducts();
+    const favoriteIndex = favoriteProducts.findIndex(
+      (favoriteProduct) => favoriteProduct.productId === productId
+    );
+
+    if (favoriteIndex >= 0) {
+      favoriteProducts.splice(favoriteIndex, 1);
+      sessionStorage.setItem("productsFavorites", JSON.stringify(favoriteProducts));
+      updateFavoriteDisplay(productId, false);
+      return;
+    }
+
+    if (favoriteProducts.length >= 10) {
+      alert("Você já atingiu o limite de produtos favoritados (10 produtos)");
+      return;
+    }
+
+    const product = productRegistry.get(productId);
+    if (!product) return;
+
+    favoriteProducts.push({...product, dateFavorited: new Date().toString()});
+    sessionStorage.setItem("productsFavorites", JSON.stringify(favoriteProducts));
+    updateFavoriteDisplay(productId, true);
+  });
+}
+
 export default function ProductCard(product) {
   setStyle("/src/components/product-card/style.css");
+  const productsFavorites = getFavoriteProducts();
+  const isProductFavorite = productsFavorites.some((p) => p.productId === product.productId);
+
+  productRegistry.set(product.productId, product);
+  initFavoriteHandler();
+
+  let productQuantity = 1;
 
   function handleProduct(event) {
     const button = event.target.closest(`#product-${product.productId}`);
@@ -10,8 +71,6 @@ export default function ProductCard(product) {
     sessionStorage.setItem("productSelected", JSON.stringify(product));
     window.navigateTo("/product");
   }
-
-  let productQuantity = 1;
 
   function updateQuantityDisplay() {
     const quantity = document.querySelector(`#product-card__quantity-${product.productId}`);
@@ -40,6 +99,16 @@ export default function ProductCard(product) {
   return `
     <article class="product-card">
       <div class="product-card__media">
+        <button
+          id="favorite-product__button-product-${product.productId}"
+          class="product-card--favorite-product"
+          data-product-id="${product.productId}"
+          type="button"
+        >
+          ${isProductFavorite ?
+      `<i class="fa-solid fa-heart favorite-product__icon"></i>`
+      : `<i class="fa-regular fa-heart favorite-product__icon"></i>`}
+        </button>
         <a
           class="product-card__media-link"
           href="/product"
@@ -78,7 +147,7 @@ export default function ProductCard(product) {
               Comprar
             </button>
           </div>`
-         }
+    }
       </div>
 
       <div class="product-card__content">
@@ -95,10 +164,10 @@ export default function ProductCard(product) {
       ${`
         <div class="product-card__actions">
           ${Button({
-             id: `product-${product.productId}`,
-             type: "button",
-             class: "product-card__button product-card__button--primary",
-             innerText: `Ver detalhes`,
+            id: `product-${product.productId}`,
+            type: "button",
+            class: "product-card__button product-card__button--primary",
+            innerText: `Ver detalhes`,
           })}
           <a class="product-card__details-link" href="/checkout" data-route>
             <i class="fa-solid fa-cart-plus product-card__icon"></i>

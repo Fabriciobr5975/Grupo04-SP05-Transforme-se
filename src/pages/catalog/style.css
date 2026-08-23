@@ -287,6 +287,12 @@
     sans-serif;
 }
 
+.catalog-page__products--notfound {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
 @media (max-width: 1060px) {
   .catalog-page__content {
     display: grid;

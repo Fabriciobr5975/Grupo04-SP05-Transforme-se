@@ -55,14 +55,11 @@ export default class Render {
 
   setScript(scriptPath) {
     const existingScript = document.querySelector('script[data-page-script="true"]');
-
-    if (existingScript && existingScript.getAttribute("src") === scriptPath) return;
-
     if (existingScript) existingScript.remove();
 
     const script = document.createElement("script");
     script.type = "module";
-    script.src = scriptPath;
+    script.src = `${scriptPath}?render=${Date.now()}`;
     script.setAttribute("data-page-script", "true");
 
     document.body.appendChild(script);

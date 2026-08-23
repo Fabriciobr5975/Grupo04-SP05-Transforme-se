@@ -1,12 +1,14 @@
 import { products } from "../../../seeds/products.js";
 import ProductCard from "../../components/product-card/index.js";
 import BaseLayout from "../../layouts/index.js";
-import { productPagedService } from "./Services/CatalogService.js";
+import { productPagedService } from "./services/CatalogService.js";
 
-const { currentPage, getPagedData } = productPagedService();
-const { pagedItems, pagesCount, firstPageIndex, lastPageIndex } = getPagedData(products);
+export default function ProductPage() {
 
-const template = `
+  const { currentPage, getPagedData } = productPagedService();
+  const { pagedItems, pagesCount, firstPageIndex, lastPageIndex } = getPagedData(products);
+
+  const template = `
   <div class="catalog-page">
     <section class="catalog-page__main">
       <div role="image" class="catalog-page__image"></div>
@@ -210,11 +212,11 @@ const template = `
         </section>
         <section class="catalog-page__products">
             <ul class="catalog-page__products-list">
-              ${pagedItems.map((product) => `
+              ${Array.isArray(pagedItems) && pagedItems.length > 0 ? pagedItems.map((product) => `
                   <li class="catalog-page__products__item">
                   ${ProductCard(product)}
                   </li>
-              `).join("")}
+              `).join("") : `<p class="catalog-page__products--notfound">Nenhum produto foi encontrado!</p>`}
             </ul>
             <nav class="catalog-page__products-pagination">
               <div class="catalog-page__products-pagination__info">
@@ -256,12 +258,9 @@ const template = `
     </section>
   </div>
 `;
-
-const ProductPage = {
-  template: BaseLayout(template),
-  styles: "/src/pages/catalog/style.css",
-  scripts: "/src/pages/catalog/services/FilterService.js"
-};
-
-export default ProductPage;
-
+  return {
+    template: BaseLayout(template),
+    styles: "/src/pages/catalog/style.css",
+    scripts: "/src/pages/catalog/services/FilterService.js"
+  }
+}

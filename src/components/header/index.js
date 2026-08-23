@@ -2,7 +2,15 @@ import { setStyle } from "../../utils/PageUtil.js";
 
 export default function Header() {
   setStyle("/src/components/header/style.css");
-  const userLoggedIn = sessionStorage.getItem("loggedInUser") ? true : false;
+  const currentPath = window.location.pathname || "/";
+
+  const userIsLogged = () => 
+    sessionStorage.getItem("loggedInUser") ? true : false;
+
+  const getActiveClass = (path) =>
+    currentPath === path
+      ? "navbar__list__item--active"
+      : "navbar__list__item--no-active";
 
   return (`
     <header class="header">
@@ -23,25 +31,25 @@ export default function Header() {
             <li class="navbar__list__item" data-route>
               <a href="/" data-route>
                 Início
-                <hr class="navbar__list__item--active" />
+                <hr class="${getActiveClass("/")}" />
               </a>
             </li>
             <li class="navbar__list__item">
               <a href="/catalog" data-route>
-                Nosso Cardápio
-                <hr class="navbar__list__item--no-active" />
+                Produtos
+                <hr class="${getActiveClass("/catalog")}" />
               </a>
             </li>
             <li class="navbar__list__item">
               <a href="/about-us" data-route>
                 Sobre Nós
-                <hr class="navbar__list__item--no-active" />
+                <hr class="${getActiveClass("/about-us")}" />
               </a>
             </li>
             <li class="navbar__list__item">
               <a href="/help-center" data-route>
-                Contato
-                <hr class="navbar__list__item--no-active" />
+                Suporte
+                <hr class="${getActiveClass("/help-center")}" />
               </a>
             </li>
           </ul>
@@ -60,7 +68,7 @@ export default function Header() {
             <!-- <span class="icon_section__btn--quantity">0</span> -->
           </a>
 
-          <a class="icon-section__btn" href=${userLoggedIn ? "/profile" : "/auth/login"} data-route>
+          <a class="icon-section__btn" href=${userIsLogged() ? "/profile" : "/auth/login"} data-route>
             <i class="fa-regular fa-user header__icon"></i>
           </a>
         </div>

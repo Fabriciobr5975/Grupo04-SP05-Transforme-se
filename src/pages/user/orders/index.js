@@ -1,7 +1,7 @@
 import BaseLayout from "../../../layouts/index.js";
 import { useOrders } from "./OrderService.js";
 
-const orderService = useOrders();
+const { orderCount, productsCount, userOrders } = useOrders();
 
 const template = `
   <div class="layout-user-page">
@@ -21,13 +21,13 @@ const template = `
           </div>
 
           <div class="orders-page__header-meta">
-            <span>${orderService.productsCount} itens • ${orderService.orderCount} pedidos</span>
+            <span>${productsCount} itens • ${orderCount} pedidos</span>
           </div>
         </header>
 
         <section class="orders-page__content">
-          ${Array.isArray(orderService.userOrders) && orderService.userOrders.length > 0 ?
-            orderService.userOrders.map(order => `
+          ${Array.isArray(userOrders) && userOrders.length > 0 ?
+            userOrders.map(order => `
               <article class="orders-page__card">
                 <div class="orders-page__card-header">
                   <div>
@@ -60,8 +60,13 @@ const template = `
                           <a href="/product" class="orders-page__button orders-page__button--secondary" data-route>
                             Ver detalhes do produto
                           </a>
-                          <button type="button" class="orders-page__button orders-page__button--ghost">
-                            Comprar novamente
+                          <button 
+                            data-order-id=${order.orderId}
+                            data-product-id="${p.productId}"
+                            type="button" 
+                            class="orders-page__button orders-page__button--ghost"
+                          >
+                            Avaliar Produto
                           </button>
                         </div>
                       </div>

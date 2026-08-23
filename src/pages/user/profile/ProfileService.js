@@ -36,8 +36,9 @@ function handleLogout(event) {
   const confirmed = window.confirm("Deseja sair da sua conta?");
   if (!confirmed) return;
 
-  sessionStorage.removeItem("loggedInUser");
+  sessionStorage.clear();
   window.navigateTo("/");
 }
 
 window.addEventListener("click", handleLogout);
+

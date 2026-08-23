@@ -23,11 +23,13 @@ export function productPagedService() {
         const productsResultInfo = document.querySelector(".catalog-page__search-result");
         const pageCount = document.querySelector(".catalog-page__products-pagination__page-count");
 
-        if(productsResultInfo) productsResultInfo.innerHTML = `${productFilter.length} produto(s)`;
+        if (productsResultInfo) productsResultInfo.innerHTML = `${productFilter.length} produto(s)`;
 
-        if (productsList) 
-            productsList.innerHTML = pagedItems
-                .map((product) => `<li class="catalog-page__products__item">${ProductCard(product)}</li>`).join("");
+        if (productsList)
+            productsList.innerHTML = Array.isArray(pagedItems) && pagedItems.length > 0 ? pagedItems.map((product) => `
+                <li class="catalog-page__products__item">
+                  ${ProductCard(product)}
+                </li>`).join("") : `<p class="catalog-page__products--notfound">Nenhum produto foi encontrado!</p>`;
 
         if (resultsInfo) resultsInfo.innerHTML = `
                 Mostrando
@@ -38,11 +40,15 @@ export function productPagedService() {
                 <span class="catalog-page__products-pagination__info--strong">${productFilter.length}</span> resultados
             `;
 
+        window.scrollTo({
+            top: 300,
+            behavior: "smooth",
+        });
+
         if (pageCurrent) pageCurrent.textContent = String(safeCurrentPage);
         if (pageCount) pageCount.textContent = String(pagesCount);
         if (prevButton) prevButton.disabled = safeCurrentPage === 1;
         if (nextButton) nextButton.disabled = safeCurrentPage >= pagesCount;
-
     };
 
     const handleFilters = () => {
@@ -50,7 +56,7 @@ export function productPagedService() {
         const selectedOrderValue = document.querySelector('input[name="product-filter"]:checked').value;
         let result = [...currentItems];
 
-        if (selectedCategoryValue !== "Todos") 
+        if (selectedCategoryValue !== "Todos")
             result = result.filter((p) => p.category === selectedCategoryValue);
 
         return result.toSorted((a, b) => {
@@ -125,4 +131,3 @@ export function productPagedService() {
 
     return { currentPage, getPagedData, renderPagination };
 }
-
