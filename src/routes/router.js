@@ -40,11 +40,11 @@ const locationHandler = async () => {
     if (typeof page.default === "function") {
       const { template, styles, scripts } = page.default();
       await render.render(template, styles, scripts);
-      
     } else {
       const { template, styles, scripts } = page.default;
       await render.render(template, styles, scripts);
-    }
+    }      
+
   } catch (err) {
     root.innerHTML = "<p>Página não encontrada.</p>";
     console.error(err);
