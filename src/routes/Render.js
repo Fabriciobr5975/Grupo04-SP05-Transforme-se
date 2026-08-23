@@ -1,5 +1,3 @@
-import { initializeVLibras } from "../components/vlibras/index.js";
-
 export default class Render {
   constructor(root) {
     this.root = root;
@@ -10,10 +8,6 @@ export default class Render {
     await this.transitionOut();
 
     this.root.innerHTML = page;
-    
-    initializeVLibras().catch((error) => {
-      console.error("Não foi possível inicializar o VLibras.", error);
-    });
 
     this.setStyle(stylePath);
     if (scriptPath) {

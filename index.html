@@ -29,9 +29,18 @@
     />
   </head>
   <body>
-    <div id="root"></div> 
+    <div id="root"></div>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
     <script type="module" src="./src/routes/Router.js" defer></script>
   </body>
 </html>

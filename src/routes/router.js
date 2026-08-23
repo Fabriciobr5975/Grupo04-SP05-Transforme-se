@@ -54,7 +54,3 @@ const locationHandler = async () => {
 window.onpopstate = locationHandler;
 
 window.addEventListener("DOMContentLoaded", locationHandler);
-
-window.onload = () => {
-  navigateTo("/");
-};
