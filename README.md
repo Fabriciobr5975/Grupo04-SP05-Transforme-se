@@ -35,11 +35,11 @@ Contribuições são bem-vindas. Abra issues para relatar bugs ou sugerir melhor
 
 ## Referências 🔗
 
-- ![Vanilla JS Single Page Application Routes | # or URL](https://www.youtube.com/watch?v=JmSb1VFoP7)
-- ![Creating an SPA Router in Vanilla JS](https://www.youtube.com/watch?v=ZleShIpv5zQ)
-- ![Web Components e Seus Três PRINCIPAIS CONCEITOS: DOM, Shadow DOM e Virtual DOM](https://www.youtube.com/watch?v=PMm-VRXz8I8)
-- ![W3Schools - JavaScript Tutorial](https://www.w3schools.com/)
-- ![Mozilla Developers](https://developer.mozilla.org/pt-BR/)
+- [Vanilla JS Single Page Application Routes | # or URL](https://www.youtube.com/watch?v=JmSb1VFoP7)
+- [Creating an SPA Router in Vanilla JS](https://www.youtube.com/watch?v=ZleShIpv5zQ)
+- [Web Components e Seus Três PRINCIPAIS CONCEITOS: DOM, Shadow DOM e Virtual DOM](https://www.youtube.com/watch?v=PMm-VRXz8I8)
+- [W3Schools - JavaScript Tutorial](https://www.w3schools.com/)
+- [Mozilla Developers](https://developer.mozilla.org/pt-BR/)
 
 ##  
 <div align="center">
